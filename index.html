@@ -477,9 +477,17 @@
                 'قسم الرياضيات': ['تحليل رياضي (3)', 'جبر (2)', 'معادلات تفاضلية (2)', 'ميكانيكا تحليلية'],
                 'قسم الفيزياء': ['كهربية ومغناطيسية (1)', 'ديناميكا حرارية', 'فيزياء حديثة (1)', 'بصريات فيزيائية'],
                 'قسم الكيمياء': ['كيمياء فيزيائية (2)', 'كيمياء عضوية (2)', 'كيمياء غير عضوية (2)', 'كيمياء تحليلية (2)'],
-                // Add more departments for year 2
             },
-            // Add more data for other years and departments as needed
+            'متطلبات الجامعة': [
+                { name: 'قضايا مجتمعية', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>' },
+                { name: 'مبادئ القانون والدستور', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>' },
+                { name: 'حاسب آلي', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>' },
+                { name: 'لغة انجليزية', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>' }
+            ],
+            'دراسات عليا': {
+                '1': ['مناهج بحث علمي', 'إحصاء متقدم', 'مادة تخصصية 1'],
+                '2': ['مادة تخصصية 2', 'كتابة علمية', 'مشروع التخرج']
+            }
         };
 
         // --- Daily Verse Logic ---
@@ -525,7 +533,6 @@
         function openMenu() {
             sideMenu.classList.add('open');
             menuOverlay.classList.remove('hidden');
-            // Prevent background scrolling when menu is open
             document.documentElement.style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
             
@@ -539,7 +546,6 @@
         function closeMenu() {
             sideMenu.classList.remove('open');
             menuOverlay.classList.add('hidden');
-            // Restore background scrolling when menu is closed
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
 
@@ -551,7 +557,6 @@
         }
 
         function navigateToPage(targetId) {
-            // Hide all pages and reset animations
             pageContents.forEach(page => {
                 page.classList.add('hidden');
                 const animatedChildren = page.querySelectorAll('.animate-on-load');
@@ -563,9 +568,8 @@
             const targetPage = document.getElementById(targetId);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
-                window.scrollTo(0, 0); // Scroll to top on page change
+                window.scrollTo(0, 0);
 
-                // Trigger animations for the newly visible page
                 const elementsToAnimate = targetPage.querySelectorAll('.animate-on-load');
                 elementsToAnimate.forEach((el, index) => {
                     el.classList.add(`fade-in-up-${index + 1}`);
@@ -578,7 +582,7 @@
             const departmentsContainer = document.getElementById('departments-container');
             const departmentsTitle = document.getElementById('departments-title');
 
-            departmentsContainer.innerHTML = ''; // Clear previous content
+            departmentsContainer.innerHTML = ''; 
             departmentsTitle.textContent = `أقسام ${currentYear}`;
 
             const departments = departmentsData[currentYear];
@@ -595,7 +599,6 @@
                  departmentsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد أقسام متاحة حاليًا لهذا الاختيار.</p>`;
             }
 
-            // Re-attach event listeners
             document.querySelectorAll('.department-choice').forEach(card => {
                 card.addEventListener('click', e => {
                     e.preventDefault();
@@ -613,28 +616,39 @@
             const subjectsBackBtn = document.getElementById('subjects-back-btn');
             const subjectsBackBtnText = document.getElementById('subjects-back-btn-text');
             
-            subjectsContainer.innerHTML = ''; // Clear previous subjects
+            subjectsContainer.innerHTML = '';
             
             let subjects;
-            // Determine which set of subjects to show based on the current navigation path
-            if (currentYear === 'السنة الأولى') {
-                subjects = subjectsData[currentYear]?.[currentSemester];
-                const semesterText = currentSemester === '1' ? 'الأول' : 'الثاني';
-                subjectsListTitle.textContent = `مواد الفصل الدراسي ${semesterText}`;
-                subjectsBackBtn.dataset.target = 'page-semesters';
-                subjectsBackBtnText.textContent = 'العودة للفصول';
-            } else {
+            const yearsWithDepartments = ['السنة الثانية', 'السنة الثالثة', 'السنة الرابعة'];
+
+            if (currentYear === 'متطلبات الجامعة') {
+                subjects = subjectsData[currentYear];
+                subjectsListTitle.textContent = 'مواد متطلبات الجامعة';
+                subjectsBackBtn.dataset.target = 'page-academic-years';
+                subjectsBackBtnText.textContent = 'العودة للسنوات';
+            } else if (yearsWithDepartments.includes(currentYear)) {
                 subjects = subjectsData[currentYear]?.[currentDepartment];
                 subjectsListTitle.textContent = `مواد ${currentDepartment}`;
                 subjectsBackBtn.dataset.target = 'page-departments';
                 subjectsBackBtnText.textContent = 'العودة للأقسام';
+            } else { 
+                subjects = subjectsData[currentYear]?.[currentSemester];
+                const semesterText = currentSemester === '1' ? 'الأول' : 'الثاني';
+                subjectsListTitle.textContent = `مواد ${currentYear} - الفصل الدراسي ${semesterText}`;
+                subjectsBackBtn.dataset.target = 'page-semesters';
+                subjectsBackBtnText.textContent = 'العودة للفصول';
             }
 
 
             if (subjects && subjects.length > 0) {
-                subjects.forEach((subjectName, index) => {
+                subjects.forEach((subject, index) => {
+                    const isObject = typeof subject === 'object' && subject !== null;
+                    const subjectName = isObject ? subject.name : subject;
+                    const subjectIcon = isObject ? `<div class="icon-wrapper">${subject.icon}</div>` : '';
+
                     const subjectCard = `
                         <a href="#" class="selection-card subject-choice animate-on-load fade-in-up-${index + 1}" data-subject="${subjectName}">
+                            ${subjectIcon}
                             <span class="card-text text-lg">${subjectName}</span>
                         </a>
                     `;
@@ -644,7 +658,6 @@
                 subjectsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد مواد متاحة حاليًا لهذا الاختيار.</p>`;
             }
 
-            // Re-attach event listeners for the new subject cards
             document.querySelectorAll('.subject-choice').forEach(card => {
                 card.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -683,7 +696,6 @@
             navigateToPage('page-academic-years');
         });
 
-        // Year selection
         document.querySelectorAll('.year-choice').forEach(card => {
             card.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -693,14 +705,19 @@
                 if (yearsWithDepartments.includes(currentYear)) {
                     displayDepartments();
                     navigateToPage('page-departments');
-                } else {
+                } else if (currentYear === 'متطلبات الجامعة') {
+                    currentSemester = ''; 
+                    currentDepartment = '';
+                    displaySubjects();
+                    navigateToPage('page-subjects-list');
+                }
+                else { 
                     document.getElementById('semesters-title').textContent = currentYear;
                     navigateToPage('page-semesters');
                 }
             });
         });
 
-        // Semester selection (only for year 1 now)
         document.querySelectorAll('.semester-choice').forEach(card => {
             card.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -710,7 +727,6 @@
             });
         });
         
-        // Back buttons
         document.querySelectorAll('.back-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -723,8 +739,6 @@
              navigateToPage(e.currentTarget.dataset.target);
         });
 
-
-        // Subject detail tabs
         const tabButtons = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
         tabButtons.forEach(button => {
@@ -753,4 +767,5 @@
     </script>
 </body>
 </html>
+
 
