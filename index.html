@@ -491,6 +491,9 @@
         function openMenu() {
             sideMenu.classList.add('open');
             menuOverlay.classList.remove('hidden');
+            // Prevent background scrolling when menu is open
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
             
             const links = sideMenu.querySelectorAll('.menu-link');
             links.forEach((link, index) => {
@@ -502,6 +505,9 @@
         function closeMenu() {
             sideMenu.classList.remove('open');
             menuOverlay.classList.add('hidden');
+            // Restore background scrolling when menu is closed
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
 
             const links = sideMenu.querySelectorAll('.menu-link');
             links.forEach(link => {
