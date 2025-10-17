@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cairo SciVerse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(160deg, #18A492, #397A88);
+        }
+        .quran-box {
+            background-color: rgba(42, 110, 101, 0.7);
+        }
+        /* Styles for the side menu */
+        .side-menu {
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            background-color: rgba(30, 80, 75, 0.8);
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Start off-screen for RTL */
+        }
+        .side-menu.open {
+            transform: translateX(0);
+        }
+        .page-content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Side Menu (Hamburger Menu) -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <div id="side-menu" class="side-menu fixed top-0 right-0 h-full w-72 shadow-2xl z-50 p-6">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-2xl font-bold text-white">القائمة</h2>
+            <button id="close-menu-btn" class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav>
+            <ul class="space-y-2">
+                <li><a href="#" data-target="page-home" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الرئيسية</a></li>
+                <li><a href="#" data-target="page-subjects" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تعريف مواد اولى</a></li>
+                <li><a href="#" data-target="page-general" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام العامه</a></li>
+                <li><a href="#" data-target="page-credit" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام الكريديت</a></li>
+                <li><a href="#" data-target="page-after-grad" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">ماذا بعد التخرج</a></li>
+                <li><a href="#" data-target="page-history" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تاريخ الكلية</a></li>
+                <li><a href="#" data-target="page-summaries" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li>
+                <li><a href="#" data-target="page-about" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">عن فريق cairo SciVerse</a></li>
+                <li><a href="#" data-target="page-contact" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="app-container" class="flex-grow container mx-auto px-4 py-6">
+
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-12">
+            <button id="open-menu-btn" class="text-3xl text-white z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 12h16" />
+                </svg>
+            </button>
+            <h1 class="text-2xl font-bold">Cairo SciVerse</h1>
+            <div class="w-10 h-10 bg-white bg-opacity-90 rounded-full flex items-center justify-center font-bold text-lg text-[#397A88]">
+                SV
+            </div>
+        </header>
+
+        <!-- Page Content Area -->
+        <main>
+            <!-- Home Page -->
+            <div id="page-home" class="page-content">
+                <div class="text-center my-10">
+                    <h2 class="text-3xl md:text-4xl font-semibold leading-tight mb-10 max-w-lg mx-auto">
+                        كل ما تحتاجه من معلومات ومصادر لرحلتك في كلية العلوم.
+                    </h2>
+                    <a href="#" class="bg-white text-[#264653] font-bold py-3 px-12 rounded-full text-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 duration-300 inline-block shadow-lg">
+                        ابدأ الاستكشاف
+                    </a>
+                    <div class="flex justify-center items-center space-x-12 md:space-x-16 my-12">
+                         <div class="flex flex-col items-center space-y-2 text-white">
+                            <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
+                               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                            </div>
+                            <span>رياضة</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2 text-white">
+                            <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
+                               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.5 12c.9-2.5 3.1-4 5.5-4 3.3 0 6 2.7 6 6s-2.7 6-6 6c-2.4 0-4.6-1.5-5.5-4z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c-.9-2.5-3.1-4-5.5-4" /></svg>
+                            </div>
+                            <span>فيزياء</span>
+                        </div>
+                        <div class="flex flex-col items-center space-y-2 text-white">
+                             <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3.5"/><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2z"/></svg>
+                            </div>
+                            <span>كيمياء</span>
+                        </div>
+                    </div>
+                    <div class="my-12 max-w-md mx-auto">
+                        <p class="text-lg text-gray-200 mb-6">وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ</p>
+                        <div class="quran-box p-6 rounded-2xl text-center shadow-lg">
+                            <p class="text-xl leading-relaxed font-serif mb-4">"إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَARِ لَآيَاتٍ لِّأُولِي الْأَلْبَابِ"</p>
+                            <cite class="not-italic text-gray-300">سورة آل عمران، 190</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Pages (hidden by default) -->
+            <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
+            <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
+            <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام الكريديت</h2><p class="text-lg text-gray-200">استعراض للأقسام المتاحة بنظام الساعات المعتمدة (الكريديت).</p></div></div>
+            <div id="page-after-grad" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">ماذا بعد التخرج</h2><p class="text-lg text-gray-200">نظرة على المسارات الوظيفية والأكاديمية المتاحة لخريجي كلية العلوم.</p></div></div>
+            <div id="page-history" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تاريخ الكلية</h2><p class="text-lg text-gray-200">نبذة عن تاريخ إنشاء وتطور كلية العلوم.</p></div></div>
+            <div id="page-summaries" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الملخصات</h2><p class="text-lg text-gray-200">هنا يمكنك تصفح ومشاركة الملخصات الدراسية المختلفة.</p></div></div>
+            <div id="page-about" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">عن فريق Cairo SciVerse</h2><p class="text-lg text-gray-200">تعرف على الفريق القائم على هذا المشروع وأهدافه.</p></div></div>
+            <div id="page-contact" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تواصل معنا</h2><p class="text-lg text-gray-200">يمكنك التواصل معنا عبر وسائل التواصل الاجتماعي أو البريد الإلكتروني.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-200 text-sm pb-8 px-4">
+        <p class="mb-2">بُني هذا الصرح الرقمي لإلهام ودعم كل طالب علم. من فريق Cairo SciVerse إلى زملائنا.</p>
+        <p>&copy; 2025 | موقع Cairo SciVerse. كل الحقوق محفوظة.</p>
+    </footer>
+    
+    <!-- Bottom Nav Bar -->
+    <div class="w-full bg-transparent flex justify-center py-4">
+      <div class="w-32 h-1.5 bg-white rounded-full"></div>
+    </div>
+
+    <script>
+        const openMenuBtn = document.getElementById('open-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const sideMenu = document.getElementById('side-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const pageContents = document.querySelectorAll('.page-content');
+
+        function openMenu() {
+            sideMenu.classList.add('open');
+            menuOverlay.classList.remove('hidden');
+        }
+
+        function closeMenu() {
+            sideMenu.classList.remove('open');
+            menuOverlay.classList.add('hidden');
+        }
+
+        function navigateToPage(targetId) {
+            // Hide all pages
+            pageContents.forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show the target page
+            const targetPage = document.getElementById(targetId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Close the menu
+            closeMenu();
+        }
+
+        openMenuBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                navigateToPage(targetId);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
