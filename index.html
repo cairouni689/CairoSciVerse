@@ -6,7 +6,7 @@
     <title>Cairo SciVerse</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -23,30 +23,45 @@
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             background-color: rgba(30, 80, 75, 0.8);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
             transform: translateX(100%); /* Start off-screen for RTL */
         }
         .side-menu.open {
             transform: translateX(0);
         }
-        .page-content {
-            animation: fadeIn 0.5s ease-in-out;
+        
+        /* --- Animation Enhancements --- */
+
+        /* General Smoothness */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .icon-container {
-            transition: transform 0.3s ease, color 0.3s ease;
+        
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: perspective(800px) rotateX(-15deg) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: perspective(800px) rotateX(0deg) translateY(0);
+            }
         }
-        .icon-container:hover {
-            transform: translateY(-5px);
-            color: #E9C46A; /* A nice highlight color on hover */
-        }
-        .links-enter {
-          animation: fadeInDown 0.5s ease-out;
-        }
-        @keyframes fadeInDown {
+        
+        @keyframes linksEnter {
           from {
             opacity: 0;
             transform: translateY(-20px);
@@ -56,12 +71,62 @@
             transform: translateY(0);
           }
         }
+        
+        @keyframes menuItemEnter {
+             from {
+                opacity: 0;
+                transform: translateX(25px); /* Slide from left for RTL */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Applying animations */
+        .page-content {
+            animation: pageEnter 0.7s ease-out forwards;
+        }
+
+        .animate-on-load {
+            opacity: 0; /* Start hidden */
+        }
+        
+        .fade-in-up-1 { animation: fadeInUp 0.6s 0.2s ease-out forwards; }
+        .fade-in-up-2 { animation: fadeInUp 0.6s 0.4s ease-out forwards; }
+        .fade-in-up-3 { animation: fadeInUp 0.6s 0.6s ease-out forwards; }
+        .fade-in-up-4 { animation: fadeInUp 0.6s 0.8s ease-out forwards; }
+        
+        .menu-item-animate {
+            opacity: 0;
+            animation: menuItemEnter 0.5s ease-out forwards;
+        }
+
+        .links-enter {
+          animation: linksEnter 0.5s ease-out;
+        }
+
+        .icon-container {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .icon-container:hover {
+            transform: translateY(-5px);
+            color: #E9C46A; /* A nice highlight color on hover */
+        }
+
+        #start-exploring-btn {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #start-exploring-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
     </style>
 </head>
 <body class="gradient-bg text-white min-h-screen flex flex-col overflow-x-hidden">
 
-    <!-- Side Menu (Hamburger Menu) -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
     <div id="side-menu" class="side-menu fixed top-0 right-0 h-full w-72 shadow-2xl z-50 p-6">
         <div class="flex justify-between items-center mb-10">
             <h2 class="text-2xl font-bold text-white">القائمة</h2>
@@ -73,26 +138,25 @@
         </div>
         <nav>
             <ul class="space-y-2">
-                <li><a href="#" data-target="page-home" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الرئيسية</a></li>
-                <li><a href="#" data-target="page-subjects" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تعريف مواد اولى</a></li>
-                <li><a href="#" data-target="page-general" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام العامه</a></li>
-                <li><a href="#" data-target="page-credit" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام الكريديت</a></li>
-                <li><a href="#" data-target="page-after-grad" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">ماذا بعد التخرج</a></li>
-                <li><a href="#" data-target="page-history" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تاريخ الكلية</a></li>
-                <li><a href="#" data-target="page-summaries" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li>
-                <li><a href="#" data-target="page-about" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">عن فريق cairo SciVerse</a></li>
-                <li><a href="#" data-target="page-contact" class="menu-link flex items-center p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تواصل معنا</a></li>
+                <li><a href="#" data-target="page-home" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الرئيسية</a></li>
+                <li><a href="#" data-target="page-subjects" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تعريف مواد اولى</a></li>
+                <li><a href="#" data-target="page-general" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام العامه</a></li>
+                <li><a href="#" data-target="page-credit" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام الكريديت</a></li>
+                <li><a href="#" data-target="page-after-grad" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">ماذا بعد التخرج</a></li>
+                <li><a href="#" data-target="page-history" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تاريخ الكلية</a></li>
+                <li><a href="#" data-target="page-summaries" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li>
+                <li><a href="#" data-target="page-about" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">عن فريق cairo SciVerse</a></li>
+                <li><a href="#" data-target="page-contact" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تواصل معنا</a></li>
             </ul>
         </nav>
     </div>
 
     <div id="app-container" class="flex-grow container mx-auto px-4 py-6">
 
-        <!-- Header -->
         <header class="flex justify-between items-center mb-12">
             <button id="open-menu-btn" class="text-3xl text-white z-20">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 12h16" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
             <h1 id="logo-text" class="text-2xl font-bold cursor-pointer">Cairo SciVerse</h1>
@@ -101,20 +165,17 @@
             </div>
         </header>
 
-        <!-- Page Content Area -->
         <main>
-            <!-- Home Page -->
             <div id="page-home" class="page-content">
                 <div class="text-center my-10">
-                    <h2 class="text-3xl md:text-4xl font-semibold leading-tight mb-10 max-w-lg mx-auto">
+                    <h2 class="animate-on-load text-3xl md:text-4xl font-semibold leading-tight mb-10 max-w-lg mx-auto">
                         كل ما تحتاجه من معلومات ومصادر لرحلتك في كلية العلوم.
                     </h2>
-                    <a href="#" id="start-exploring-btn" class="bg-white text-[#264653] font-bold py-3 px-12 rounded-full text-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 duration-300 inline-block shadow-lg">
+                    <a href="#" id="start-exploring-btn" class="animate-on-load bg-white text-[#264653] font-bold py-3 px-12 rounded-full text-lg hover:bg-opacity-90 duration-300 inline-block shadow-lg">
                         ابدأ الاستكشاف
                     </a>
-                    <div class="flex justify-center items-center gap-12 md:gap-16 my-12">
-                        <!-- Math Icon -->
-                         <div class="flex flex-col items-center space-y-3 text-white icon-container">
+                    <div class="animate-on-load flex justify-center items-center gap-12 md:gap-16 my-12">
+                        <div class="flex flex-col items-center space-y-3 text-white icon-container">
                             <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-5m-3 5v-5m-6 5h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -122,7 +183,6 @@
                             </div>
                             <span class="font-semibold">رياضة</span>
                         </div>
-                        <!-- Physics Icon -->
                         <div class="flex flex-col items-center space-y-3 text-white icon-container">
                             <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -131,7 +191,6 @@
                             </div>
                             <span class="font-semibold">فيزياء</span>
                         </div>
-                        <!-- Chemistry Icon -->
                         <div class="flex flex-col items-center space-y-3 text-white icon-container">
                              <div class="w-16 h-16 flex items-center justify-center text-3xl font-light">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -141,7 +200,7 @@
                             <span class="font-semibold">كيمياء</span>
                         </div>
                     </div>
-                    <div class="my-12 max-w-md mx-auto">
+                    <div class="animate-on-load my-12 max-w-md mx-auto">
                         <p class="text-lg text-gray-200 mb-6">وَذَكِّرْ فَإِنَّ الذِّكْرَىٰ تَنفَعُ الْمُؤْمِنِينَ</p>
                         <div class="quran-box p-6 rounded-2xl text-center shadow-lg">
                             <p id="quran-verse-text" class="text-xl leading-relaxed font-serif mb-4"></p>
@@ -151,7 +210,6 @@
                 </div>
             </div>
 
-            <!-- Other Pages (hidden by default) -->
             <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
             <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
             <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام الكريديت</h2><p class="text-lg text-gray-200">استعراض للأقسام المتاحة بنظام الساعات المعتمدة (الكريديت).</p></div></div>
@@ -169,22 +227,18 @@
                     </button>
             
                     <div id="social-links-container" class="hidden max-w-sm mx-auto mt-8 space-y-4">
-                        <!-- Facebook Link -->
                         <a href="https://www.facebook.com/share/1A3ns3whzY/" target="_blank" class="flex items-center justify-center p-3 bg-white bg-opacity-10 rounded-lg hover:bg-opacity-20 transition-all duration-300">
                            <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24H12.82v-9.29h-3.128v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z"></path></svg>
                            <span class="font-semibold">صفحة الفيسبوك</span>
                         </a>
-                        <!-- YouTube Link -->
                         <a href="https://youtube.com/@cairo_sciverse_0?si=cKP0Dk15RMKsvCCx" target="_blank" class="flex items-center justify-center p-3 bg-white bg-opacity-10 rounded-lg hover:bg-opacity-20 transition-all duration-300">
                            <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
                            <span class="font-semibold">قناة اليوتيوب</span>
                         </a>
-                        <!-- WhatsApp Link -->
                         <a href="https://chat.whatsapp.com/DLbeD1yHlJWBkxo1FSilv5?mode=ems_copy_t" target="_blank" class="flex items-center justify-center p-3 bg-white bg-opacity-10 rounded-lg hover:bg-opacity-20 transition-all duration-300">
                            <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.512 1.924 6.341l-.225 1.419 1.436-.211z"></path></svg>
                            <span class="font-semibold">جروب الواتساب</span>
                         </a>
-                        <!-- Google Drive Link -->
                         <a href="https://drive.google.com/drive/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS" target="_blank" class="flex items-center justify-center p-3 bg-white bg-opacity-10 rounded-lg hover:bg-opacity-20 transition-all duration-300">
                            <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.333 3.333H4.667C3.933 3.333 3.342 3.933 3.342 4.667L3.333 19.333C3.333 20.067 3.933 20.667 4.667 20.667H19.333C20.067 20.667 20.667 20.067 20.667 19.333V4.667C20.667 3.933 20.067 3.333 19.333 3.333ZM16.417 13.083L12.9 16.583C12.708 16.783 12.358 16.783 12.167 16.583L10.333 14.75L7.583 17.5C7.392 17.692 7.042 17.692 6.85 17.5L4.417 15.067C4.225 14.875 4.225 14.525 4.417 14.333L10.417 8.333C10.608 8.142 10.958 8.142 11.15 8.333L12.983 10.167L16.417 6.742C16.608 6.55 16.958 6.55 17.15 6.742L19.583 9.175C19.775 9.367 19.775 9.717 19.583 9.908L16.417 13.083Z"></path></svg>
                            <span class="font-semibold">جوجل درايف</span>
@@ -195,13 +249,11 @@
         </main>
     </div>
 
-    <!-- Footer -->
     <footer class="text-center text-gray-200 text-sm pb-8 px-4">
         <p class="mb-2">بُني هذا الصرح الرقمي لإلهام ودعم كل طالب علم. من فريق Cairo SciVerse إلى زملائنا.</p>
         <p>&copy; 2025 | موقع Cairo SciVerse. كل الحقوق محفوظة.</p>
     </footer>
     
-    <!-- Bottom Nav Bar -->
     <div class="w-full bg-transparent flex justify-center py-4">
       <div class="w-32 h-1.5 bg-white rounded-full"></div>
     </div>
@@ -250,11 +302,25 @@
         function openMenu() {
             sideMenu.classList.add('open');
             menuOverlay.classList.remove('hidden');
+            
+            // Animate menu items on open
+            const links = sideMenu.querySelectorAll('.menu-link');
+            links.forEach((link, index) => {
+                link.classList.add('menu-item-animate');
+                link.style.animationDelay = `${index * 0.07 + 0.1}s`;
+            });
         }
 
         function closeMenu() {
             sideMenu.classList.remove('open');
             menuOverlay.classList.add('hidden');
+
+            // Reset menu item animations for next time
+            const links = sideMenu.querySelectorAll('.menu-link');
+            links.forEach(link => {
+                link.classList.remove('menu-item-animate');
+                link.style.animationDelay = '';
+            });
         }
 
         function navigateToPage(targetId) {
@@ -269,7 +335,16 @@
         }
 
         // --- Event Listeners ---
-        document.addEventListener('DOMContentLoaded', setDailyVerse);
+        document.addEventListener('DOMContentLoaded', () => {
+            setDailyVerse();
+            
+            // Trigger home page animations on load
+            const homePageElements = document.querySelectorAll('#page-home .animate-on-load');
+            homePageElements.forEach((el, index) => {
+                el.classList.add(`fade-in-up-${index + 1}`);
+            });
+        });
+
         openMenuBtn.addEventListener('click', openMenu);
         closeMenuBtn.addEventListener('click', closeMenu);
         menuOverlay.addEventListener('click', closeMenu);
@@ -288,103 +363,18 @@
         });
 
         showLinksBtn.addEventListener('click', () => {
-            if (socialLinksContainer.classList.contains('hidden')) {
-                socialLinksContainer.classList.remove('hidden');
+            socialLinksContainer.classList.toggle('hidden');
+            if (!socialLinksContainer.classList.contains('hidden')) {
                 socialLinksContainer.classList.add('links-enter');
             } else {
-                socialLinksContainer.classList.add('hidden');
                 socialLinksContainer.classList.remove('links-enter');
             }
         });
         
-        logoText.addEventListener('click', () => {
-            navigateToPage('page-home');
-        });
+        const goHome = () => navigateToPage('page-home');
+        logoText.addEventListener('click', goHome);
+        logoIcon.addEventListener('click', goHome);
 
-        logoIcon.addEventListener('click', () => {
-            navigateToPage('page-home');
-        });
     </script>
 </body>
 </html>
-
-
-                            <cite class="not-italic text-gray-300">سورة آل عمران، 190</cite>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Pages (hidden by default) -->
-            <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
-            <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
-            <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام الكريديت</h2><p class="text-lg text-gray-200">استعراض للأقسام المتاحة بنظام الساعات المعتمدة (الكريديت).</p></div></div>
-            <div id="page-after-grad" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">ماذا بعد التخرج</h2><p class="text-lg text-gray-200">نظرة على المسارات الوظيفية والأكاديمية المتاحة لخريجي كلية العلوم.</p></div></div>
-            <div id="page-history" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تاريخ الكلية</h2><p class="text-lg text-gray-200">نبذة عن تاريخ إنشاء وتطور كلية العلوم.</p></div></div>
-            <div id="page-summaries" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الملخصات</h2><p class="text-lg text-gray-200">هنا يمكنك تصفح ومشاركة الملخصات الدراسية المختلفة.</p></div></div>
-            <div id="page-about" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">عن فريق Cairo SciVerse</h2><p class="text-lg text-gray-200">تعرف على الفريق القائم على هذا المشروع وأهدافه.</p></div></div>
-            <div id="page-contact" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تواصل معنا</h2><p class="text-lg text-gray-200">يمكنك التواصل معنا عبر وسائل التواصل الاجتماعي أو البريد الإلكتروني.</p></div></div>
-        </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-center text-gray-200 text-sm pb-8 px-4">
-        <p class="mb-2">بُني هذا الصرح الرقمي لإلهام ودعم كل طالب علم. من فريق Cairo SciVerse إلى زملائنا.</p>
-        <p>&copy; 2025 | موقع Cairo SciVerse. كل الحقوق محفوظة.</p>
-    </footer>
-    
-    <!-- Bottom Nav Bar -->
-    <div class="w-full bg-transparent flex justify-center py-4">
-      <div class="w-32 h-1.5 bg-white rounded-full"></div>
-    </div>
-
-    <script>
-        const openMenuBtn = document.getElementById('open-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const sideMenu = document.getElementById('side-menu');
-        const menuOverlay = document.getElementById('menu-overlay');
-        const menuLinks = document.querySelectorAll('.menu-link');
-        const pageContents = document.querySelectorAll('.page-content');
-
-        function openMenu() {
-            sideMenu.classList.add('open');
-            menuOverlay.classList.remove('hidden');
-        }
-
-        function closeMenu() {
-            sideMenu.classList.remove('open');
-            menuOverlay.classList.add('hidden');
-        }
-
-        function navigateToPage(targetId) {
-            // Hide all pages
-            pageContents.forEach(page => {
-                page.classList.add('hidden');
-            });
-            
-            // Show the target page
-            const targetPage = document.getElementById(targetId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-            }
-
-            // Close the menu
-            closeMenu();
-        }
-
-        openMenuBtn.addEventListener('click', openMenu);
-        closeMenuBtn.addEventListener('click', closeMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-
-        menuLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const targetId = link.getAttribute('data-target');
-                navigateToPage(targetId);
-            });
-        });
-    </script>
-</body>
-</html>
-
-
