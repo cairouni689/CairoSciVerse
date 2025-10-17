@@ -9,20 +9,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-dark-purple: #0b091f;
+            --bg-light-purple: #1e1a40;
+            --accent-green: #80ff72;
+            --text-main: #ffffff;
+            --text-dark: #0b091f;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
+            color: var(--text-main);
         }
         .gradient-bg {
-            background: linear-gradient(160deg, #18A492, #397A88);
+            background: linear-gradient(160deg, var(--bg-dark-purple), var(--bg-light-purple));
         }
         .quran-box {
-            background-color: rgba(42, 110, 101, 0.7);
+            background-color: rgba(30, 26, 64, 0.7);
         }
         /* Styles for the side menu */
         .side-menu {
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            background-color: rgba(30, 80, 75, 0.8);
+            background-color: rgba(30, 26, 64, 0.8);
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
             transform: translateX(100%); /* Start off-screen for RTL */
         }
@@ -117,20 +126,22 @@
         }
         .icon-container:hover {
             transform: translateY(-5px);
-            color: #E9C46A; /* A nice highlight color on hover */
+            color: var(--accent-green);
         }
 
-        #start-exploring-btn {
+        .primary-btn {
+            background-color: var(--accent-green);
+            color: var(--text-dark);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        #start-exploring-btn:hover {
+        .primary-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(128, 255, 114, 0.2);
         }
 
         /* --- Card Styles (Year, Semester, Subject) --- */
         .selection-card {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
             border-radius: 1rem;
             padding: 1.5rem;
             text-align: center;
@@ -140,24 +151,24 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .selection-card:hover {
             transform: translateY(-8px);
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         }
         .selection-card .icon-wrapper svg {
             width: 2.75rem; /* 44px */
             height: 2.75rem;
             stroke-width: 1.5;
-            color: #E9C46A;
+            color: var(--accent-green);
             margin-bottom: 0.5rem;
         }
         .selection-card .card-text {
             font-size: 1.125rem; /* 18px */
             font-weight: 600;
-            color: #FFFFFF;
+            color: var(--text-main);
         }
 
         /* --- Subject Details & Tabs --- */
@@ -171,9 +182,9 @@
             border: 2px solid transparent;
         }
         .tab-btn.active {
-            color: white;
-            background-color: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--accent-green);
+            background-color: rgba(128, 255, 114, 0.1);
+            border-color: rgba(128, 255, 114, 0.3);
         }
         .tab-content {
             background-color: rgba(0, 0, 0, 0.2);
@@ -187,17 +198,17 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.5rem 1rem;
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.05);
             border-radius: 9999px;
             transition: background-color 0.2s;
         }
         .back-btn:hover {
-            background-color: rgba(255,255,255,0.2);
+            background-color: rgba(255,255,255,0.1);
         }
 
     </style>
 </head>
-<body class="gradient-bg text-white min-h-screen flex flex-col overflow-x-hidden">
+<body class="gradient-bg min-h-screen flex flex-col overflow-x-hidden">
 
     <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"></div>
     <div id="side-menu" class="side-menu fixed top-0 right-0 h-full w-72 shadow-2xl z-50 p-6">
@@ -233,7 +244,7 @@
                 </svg>
             </button>
             <h1 id="logo-text" class="text-2xl font-bold cursor-pointer">Cairo SciVerse</h1>
-            <div id="logo-icon" class="w-10 h-10 bg-white bg-opacity-90 rounded-full flex items-center justify-center font-bold text-lg text-[#397A88] cursor-pointer">
+            <div id="logo-icon" class="w-10 h-10 bg-white bg-opacity-90 rounded-full flex items-center justify-center font-bold text-lg cursor-pointer" style="color: var(--bg-light-purple);">
                 SV
             </div>
         </header>
@@ -245,7 +256,7 @@
                     <h2 class="animate-on-load text-3xl md:text-4xl font-semibold leading-tight mb-10 max-w-lg mx-auto">
                         كل ما تحتاجه من معلومات ومصادر لرحلتك في كلية العلوم.
                     </h2>
-                    <a href="#" id="start-exploring-btn" class="animate-on-load bg-white text-[#264653] font-bold py-3 px-12 rounded-full text-lg hover:bg-opacity-90 duration-300 inline-block shadow-lg">
+                    <a href="#" id="start-exploring-btn" class="primary-btn animate-on-load font-bold py-3 px-12 rounded-full text-lg duration-300 inline-block shadow-lg">
                         ابدأ الاستكشاف
                     </a>
                     <div class="animate-on-load flex justify-center items-center gap-12 md:gap-16 my-12">
@@ -396,7 +407,7 @@
                 <div class="text-center p-8">
                     <h2 class="text-4xl font-bold mb-4 animate-on-load">تواصل معنا</h2>
                     <p class="text-lg text-gray-200 mb-8 animate-on-load">يمكنك التواصل معنا عبر وسائل التواصل الاجتماعي أو البريد الإلكتروني.</p>
-                    <button id="show-links-btn" class="bg-white text-[#264653] font-bold py-3 px-8 rounded-full text-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 duration-300 inline-block shadow-lg animate-on-load">
+                    <button id="show-links-btn" class="primary-btn font-bold py-3 px-8 rounded-full text-lg duration-300 inline-block shadow-lg animate-on-load">
                         كل ما يخصنا
                     </button>
                     <div id="social-links-container" class="hidden max-w-sm mx-auto mt-8 space-y-4">
@@ -428,7 +439,7 @@
     </footer>
     
     <div class="w-full bg-transparent flex justify-center py-4">
-      <div class="w-32 h-1.5 bg-white rounded-full"></div>
+      <div class="w-32 h-1.5 bg-white rounded-full bg-opacity-20"></div>
     </div>
 
     <script>
