@@ -3,6 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Security Headers Start -->
+    <!-- Content-Security-Policy (CSP) to prevent XSS attacks -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; 
+                   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+                   font-src 'self' https://fonts.gstatic.com; 
+                   img-src 'self' data:;
+                   object-src 'none';
+                   frame-ancestors 'none';">
+
+    <!-- Prevents clickjacking attacks for older browsers -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+
+    <!-- Prevents browser from MIME-sniffing a response away from the declared content-type -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Controls how much referrer information is sent with requests -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <!-- Security Headers End -->
+    
     <title>Cairo SciVerse</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -755,13 +777,14 @@
         document.querySelectorAll('.back-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                navigateToPage(button.dataset.target);
+                // This will use the browser's history instead of navigating to a fixed target
+                window.history.back();
             });
         });
         
         document.getElementById('subjects-back-btn').addEventListener('click', (e) => {
              e.preventDefault();
-             navigateToPage(e.currentTarget.dataset.target);
+             window.history.back();
         });
 
         const tabButtons = document.querySelectorAll('.tab-btn');
@@ -792,4 +815,5 @@
     </script>
 </body>
 </html>
+
 
