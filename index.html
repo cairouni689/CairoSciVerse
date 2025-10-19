@@ -541,6 +541,13 @@
             { text: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ", surah: "سورة الطلاق، 3" },
             { text: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", surah: "سورة العلق، 1" }
         ];
+        
+        // --- Helper function to save current state to sessionStorage ---
+        function saveState() {
+            sessionStorage.setItem('currentYear', currentYear);
+            sessionStorage.setItem('currentSemester', currentSemester);
+            sessionStorage.setItem('currentDepartment', currentDepartment);
+        }
 
         function setDailyVerse() {
             const verseTextElement = document.getElementById('quran-verse-text');
@@ -610,12 +617,23 @@
                     history.pushState(state, title, url);
                 }
             }
+            
+            // Before showing a page, ensure its dynamic content is populated
+            if (targetId === 'page-semesters') {
+                document.getElementById('semesters-title').textContent = currentYear;
+            } else if (targetId === 'page-departments') {
+                displayDepartments();
+            } else if (targetId === 'page-subjects-list') {
+                displaySubjects();
+            }
+
 
             pageContents.forEach(page => page.classList.add('hidden'));
             
             targetPage.classList.remove('hidden');
             window.scrollTo(0, 0);
 
+            // Reset and trigger animations for the new page
             const elementsToAnimate = targetPage.querySelectorAll('.animate-on-load');
             elementsToAnimate.forEach((el, index) => {
                 el.className = el.className.replace(/\bfade-in-up-\d+\b/g, '').trim();
@@ -652,6 +670,7 @@
                 card.addEventListener('click', e => {
                     e.preventDefault();
                     currentDepartment = card.dataset.department;
+                    saveState(); // Save state
                     displaySubjects();
                     navigateToPage('page-subjects-list');
                 });
@@ -710,6 +729,7 @@
                     e.preventDefault();
                     const subjectName = card.dataset.subject;
                     document.getElementById('subject-detail-title').textContent = subjectName;
+                    // You might want to save subjectName to sessionStorage here if needed
                     navigateToPage('page-subject-detail');
                 });
             });
@@ -719,6 +739,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             setDailyVerse();
             
+            // Restore state from sessionStorage on page load
+            currentYear = sessionStorage.getItem('currentYear') || '';
+            currentSemester = sessionStorage.getItem('currentSemester') || '';
+            currentDepartment = sessionStorage.getItem('currentDepartment') || '';
+            
             let initialPageId = window.location.hash.substring(1) || 'page-home';
             if (!document.getElementById(initialPageId)) {
                 initialPageId = 'page-home';
@@ -727,13 +752,9 @@
             history.replaceState({ pageId: initialPageId }, '', `#${initialPageId}`);
 
             pageContents.forEach(p => p.classList.add('hidden'));
-            const initialPage = document.getElementById(initialPageId);
-            initialPage.classList.remove('hidden');
             
-            const initialElements = initialPage.querySelectorAll('.animate-on-load');
-            initialElements.forEach((el, index) => {
-                el.classList.add(`fade-in-up-${index + 1}`);
-            });
+            // Navigate to the correct initial page, which will also trigger rendering
+            navigateToPage(initialPageId, true);
         });
 
         window.addEventListener('popstate', (event) => {
@@ -765,19 +786,19 @@
             card.addEventListener('click', (e) => {
                 e.preventDefault();
                 currentYear = card.dataset.year;
+                // Reset lower-level selections when a new year is chosen
+                currentSemester = ''; 
+                currentDepartment = '';
+                saveState(); // Save the new state
+
                 const yearsWithDepartments = ['السنة الثانية', 'السنة الثالثة', 'السنة الرابعة'];
                 
                 if (yearsWithDepartments.includes(currentYear)) {
-                    displayDepartments();
                     navigateToPage('page-departments');
                 } else if (currentYear === 'متطلبات الجامعة') {
-                    currentSemester = ''; 
-                    currentDepartment = '';
-                    displaySubjects();
                     navigateToPage('page-subjects-list');
                 }
                 else { 
-                    document.getElementById('semesters-title').textContent = currentYear;
                     navigateToPage('page-semesters');
                 }
             });
@@ -787,22 +808,24 @@
             card.addEventListener('click', (e) => {
                 e.preventDefault();
                 currentSemester = card.dataset.semester;
-                displaySubjects();
+                saveState(); // Save state
                 navigateToPage('page-subjects-list');
             });
         });
         
+        // --- CORRECTED BACK BUTTON LOGIC ---
+        // This single listener handles all back buttons correctly.
         document.querySelectorAll('.back-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault();
-                // This will use the browser's history instead of navigating to a fixed target
-                window.history.back();
+                const targetId = button.dataset.target;
+                if (targetId) {
+                    navigateToPage(targetId);
+                } else {
+                    // Fallback to history if no target is specified
+                    window.history.back();
+                }
             });
-        });
-        
-        document.getElementById('subjects-back-btn').addEventListener('click', (e) => {
-             e.preventDefault();
-             window.history.back();
         });
 
         const tabButtons = document.querySelectorAll('.tab-btn');
@@ -833,5 +856,4 @@
     </script>
 </body>
 </html>
-
 
