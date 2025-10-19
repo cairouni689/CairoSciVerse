@@ -133,6 +133,17 @@
         .fade-in-up-8 { animation: fadeInUp 0.6s 0.9s ease-out forwards; }
         .fade-in-up-9 { animation: fadeInUp 0.6s 1.0s ease-out forwards; }
         .fade-in-up-10 { animation: fadeInUp 0.6s 1.1s ease-out forwards; }
+        .fade-in-up-11 { animation: fadeInUp 0.6s 1.2s ease-out forwards; }
+        .fade-in-up-12 { animation: fadeInUp 0.6s 1.3s ease-out forwards; }
+        .fade-in-up-13 { animation: fadeInUp 0.6s 1.4s ease-out forwards; }
+        .fade-in-up-14 { animation: fadeInUp 0.6s 1.5s ease-out forwards; }
+        .fade-in-up-15 { animation: fadeInUp 0.6s 1.6s ease-out forwards; }
+        .fade-in-up-16 { animation: fadeInUp 0.6s 1.7s ease-out forwards; }
+        .fade-in-up-17 { animation: fadeInUp 0.6s 1.8s ease-out forwards; }
+        .fade-in-up-18 { animation: fadeInUp 0.6s 1.9s ease-out forwards; }
+        .fade-in-up-19 { animation: fadeInUp 0.6s 2.0s ease-out forwards; }
+        .fade-in-up-20 { animation: fadeInUp 0.6s 2.1s ease-out forwards; }
+
         
         .menu-item-animate {
             opacity: 0;
@@ -484,10 +495,17 @@
         let currentSemester = '';
         let currentDepartment = '';
 
+        const newDepartments = [
+            'رياضيات منفرد', 'علوم حاسب منفرد', 'فيزياء منفرد', 'كيمياء منفرد', 'جيولوجيا منفرد', 
+            'علوم فضاء(فلك)', 'بايوفيزياء منفرد', 'جيوفيزياء منفرد', 'رياضيات/إحصاء', 'رياضيات/علوم حاسب', 
+            'رياضيات/فيزياء', 'فيزياء/فلك', 'فيزياء/علوم جوية', 'كيمياء/فيزياء', 'كيمياء/كيمياء حيوي', 
+            'كيمياء/نبات', 'كيمياء/ميكروبيولوجي', 'كيمياء/حيوان', 'كيمياء/جيولوجيا', 'كيمياء/حشرات'
+        ];
+
         const departmentsData = {
-            'السنة الثانية': ['قسم الرياضيات', 'قسم الفيزياء', 'قسم الكيمياء', 'قسم الجيولوجيا', 'قسم النبات', 'قسم الحيوان'],
-            'السنة الثالثة': ['قسم الرياضيات', 'قسم الفيزياء', 'قسم الكيمياء', 'قسم الجيولوجيا', 'قسم النبات', 'قسم الحيوان'],
-            'السنة الرابعة': ['قسم الرياضيات', 'قسم الفيزياء', 'قسم الكيمياء', 'قسم الجيولوجيا', 'قسم النبات', 'قسم الحيوان'],
+            'السنة الثانية': newDepartments,
+            'السنة الثالثة': newDepartments,
+            'السنة الرابعة': newDepartments,
         };
         
         const subjectsData = {
@@ -496,9 +514,9 @@
                 '2': ['كيمياء عامة (2)', 'فيزياء عامة (2)', 'رياضيات (2)', 'ميكانيكا', 'مقدمة في الحاسب', 'لغة إنجليزية']
             },
             'السنة الثانية': {
-                'قسم الرياضيات': ['تحليل رياضي (3)', 'جبر (2)', 'معادلات تفاضلية (2)', 'ميكانيكا تحليلية'],
-                'قسم الفيزياء': ['كهربية ومغناطيسية (1)', 'ديناميكا حرارية', 'فيزياء حديثة (1)', 'بصريات فيزيائية'],
-                'قسم الكيمياء': ['كيمياء فيزيائية (2)', 'كيمياء عضوية (2)', 'كيمياء غير عضوية (2)', 'كيمياء تحليلية (2)'],
+                'رياضيات منفرد': ['تحليل رياضي (3)', 'جبر (2)', 'معادلات تفاضلية (2)', 'ميكانيكا تحليلية'], // Example data
+                'فيزياء منفرد': ['كهربية ومغناطيسية (1)', 'ديناميكا حرارية', 'فيزياء حديثة (1)', 'بصريات فيزيائية'], // Example data
+                'كيمياء منفرد': ['كيمياء فيزيائية (2)', 'كيمياء عضوية (2)', 'كيمياء غير عضوية (2)', 'كيمياء تحليلية (2)'], // Example data
             },
             'متطلبات الجامعة': [
                 { name: 'قضايا مجتمعية', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>' },
@@ -621,7 +639,7 @@
                  departments.forEach((deptName, index) => {
                     const deptCard = `
                         <a href="#" class="selection-card department-choice animate-on-load fade-in-up-${index + 1}" data-department="${deptName}">
-                            <span class="card-text text-lg">${deptName}</span>
+                            <span class="card-text text-base">${deptName}</span>
                         </a>
                     `;
                     departmentsContainer.innerHTML += deptCard;
@@ -814,4 +832,6 @@
 
     </script>
 </body>
-    </html>
+</html>
+
+
