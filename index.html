@@ -11,7 +11,7 @@
                    script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; 
                    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
                    font-src 'self' https://fonts.gstatic.com; 
-                   img-src 'self' data:;
+                   img-src 'self' data: https://placehold.co;
                    object-src 'none';
                    frame-ancestors 'none';">
 
@@ -143,6 +143,10 @@
         .fade-in-up-18 { animation: fadeInUp 0.6s 1.9s ease-out forwards; }
         .fade-in-up-19 { animation: fadeInUp 0.6s 2.0s ease-out forwards; }
         .fade-in-up-20 { animation: fadeInUp 0.6s 2.1s ease-out forwards; }
+        .fade-in-up-21 { animation: fadeInUp 0.6s 2.2s ease-out forwards; }
+        .fade-in-up-22 { animation: fadeInUp 0.6s 2.3s ease-out forwards; }
+        .fade-in-up-23 { animation: fadeInUp 0.6s 2.4s ease-out forwards; }
+        .fade-in-up-24 { animation: fadeInUp 0.6s 2.5s ease-out forwards; }
 
         
         .menu-item-animate {
@@ -300,12 +304,9 @@
                 <li><a href="#" data-target="page-home" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الرئيسية</a></li>
                 <li><a href="#" data-target="page-subjects" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تعريف مواد اولى</a></li>
                 <li><a href="#" data-target="page-general" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام العامه</a></li>
-                <!-- *** UPDATED: Renamed "Credit" to "Specialized Programs" *** -->
                 <li><a href="#" data-target="page-credit" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">البرامج النوعية المتخصصه</a></li>
                 <li><a href="#" data-target="page-after-grad" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">ماذا بعد التخرج</a></li>
                 <li><a href="#" data-target="page-history" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تاريخ الكلية</a></li>
-                <!-- *** REMOVED: Summaries link *** -->
-                <!-- <li><a href="#" data-target="page-summaries" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li> -->
                 <li><a href="#" data-target="page-about" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">عن فريق cairo SciVerse</a></li>
                 <li><a href="#" data-target="page-contact" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تواصل معنا</a></li>
             </ul>
@@ -474,35 +475,12 @@
                             <h3 class="text-2xl font-semibold mb-4">ملخصات المادة</h3>
                             <p>هنا ستجد ملخصات ومراجعات هامة للمادة لمساعدتك على الاستعداد للامتحانات.</p>
                         </div>
-                        <!-- *** UPDATED LECTURES TAB *** -->
                         <div id="tab-lectures" class="tab-content hidden">
                              <h3 class="text-2xl font-semibold mb-4">محاضرات المادة</h3>
-                             <!-- Container for dynamic lecture cards -->
                             <div id="tab-lectures-content" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Lecture cards will be injected here by JavaScript -->
-                                <!-- 
-                                Example structure:
-                                <div class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg">
-                                    <h4 class="text-xl font-semibold mb-4 text-white">المحاضرة 1</h4>
-                                    <div class="flex items-center justify-center gap-6">
-                                        <a href="..." target="_blank" class="lecture-link-btn enabled">
-                                            <svg>...</svg>
-                                            <span class="link-text">المحاضرة</span>
-                                        </a>
-                                        <div class="lecture-link-btn disabled">
-                                            <svg>...</svg>
-                                            <span class="link-text">المعمل</span>
-                                        </div>
-                                        <a href="..." target="_blank" class="lecture-link-btn enabled">
-                                            <svg>...</svg>
-                                            <span class="link-text">PDF</span>
-                                        </a>
-                                    </div>
-                                </div> 
-                                -->
                             </div>
                         </div>
-                        <!-- *** END UPDATED TAB *** -->
                         <div id="tab-instructions" class="tab-content hidden">
                             <h3 class="text-2xl font-semibold mb-4">تعليمات هامة</h3>
                             <p>نصائح وإرشادات حول كيفية دراسة المادة، طبيعة الامتحانات، وأفضل طرق المذاكرة.</p>
@@ -514,11 +492,107 @@
             <!-- ======================= OTHER STATIC PAGES ======================= -->
             <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
             <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
-            <!-- *** UPDATED: Renamed "Credit" page title and text *** -->
             <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">البرامج النوعية المتخصصه</h2><p class="text-lg text-gray-200">استعراض للبرامج المتاحة بنظام الساعات المعتمدة (البرامج النوعية المتخصصه).</p></div></div>
             <div id="page-after-grad" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">ماذا بعد التخرج</h2><p class="text-lg text-gray-200">نظرة على المسارات الوظيفية والأكاديمية المتاحة لخريجي كلية العلوم.</p></div></div>
-            <div id="page-history" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تاريخ الكلية</h2><p class="text-lg text-gray-200">نبذة عن تاريخ إنشاء وتطور كلية العلوم.</p></div></div>
-            <!-- *** This page is now orphaned as the link is removed, but we leave it *** -->
+            
+            <!-- *** UPDATED: History Page with Content *** -->
+            <div id="page-history" class="page-content hidden">
+                <div class="p-4 md:p-8 max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-white animate-on-load fade-in-up-1">
+                        تاريخ كلية العلوم: مصنع العباقرة ومنارة النهضة المصرية
+                    </h2>
+                    
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-2">
+                        تُعتبر كلية العلوم، أو كما يُطلق عليها "قلعة العلوم"، واحدة من أعرق الكليات ليس فقط في مصر، بل في الشرق الأوسط بأكمله. هي ليست مجرد صرح تعليمي، بل هي حجر الزاوية في النهضة العلمية الحديثة لمصر، والمصنع الذي قدم للعالم بعضاً من ألمع العقول التي غيرت مجرى التاريخ.
+                    </p>
+
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-10 text-white animate-on-load fade-in-up-3">
+                        التأسيس: بذرة في قلب الجامعة المصرية
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-4">
+                        تأسست كلية العلوم رسمياً في عام 1925، بالتزامن مع إعلان قيام "الجامعة المصرية" (جامعة القاهرة حالياً) كجامعة أهلية. كانت واحدة من أربع كليات أصلية شكلت نواة الجامعة، وهي: الآداب، والحقوق، والطب، والعلوم.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-5">
+                        لم يكن الهدف من إنشائها مجرد تدريس النظريات، بل كان مشروعاً وطنياً يهدف إلى خلق جيل جديد من العلماء المصريين القادرين على بناء الدولة الحديثة، وتزويدها بالخبرات في مجالات أساسية كالفيزياء، والكيمياء، والرياضيات، والجيولوجيا، والعلوم البيولوجية.
+                    </p>
+
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-10 text-white animate-on-load fade-in-up-6">
+                        العصر الذهبي: مصطفى مشرفة وعمادة العباقرة
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-7">
+                        لا يمكن ذكر تاريخ كلية العلوم دون أن يتبادر إلى الذهن اسم واحد: <strong class="text-white">الدكتور مصطفى مشرفة باشا</strong>. على الرغم من أن "مشرفة" حصل على شهاداته العليا من إنجلترا، إلا أنه كان ابن الكلية وأحد أعظم أساتذتها وعمدائها.
+                    </p>
+                    
+                    <!-- Placeholder Image for Mosharafa -->
+                    <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Dr+Moustafa+Mosharafa" 
+                         alt="صورة للدكتور مصطفى مشرفة" 
+                         class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-6 animate-on-load fade-in-up-8">
+                    
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-9">
+                        تحت قيادته، شهدت الكلية عصرها الذهبي. لُقب بـ "أينشتاين العرب" لأبحاثه الرائدة في نظريتي النسبية والكم، وكان له الفضل في "تمصير" (جعلها مصرية) هيئة التدريس، وإتاحة الفرصة للمواهب المصرية الشابة. كان "مشرفة" أستاذاً ومعلماً لجيل كامل من العلماء، وغرس فيهم شغف البحث العلمي الدقيق.
+                    </p>
+
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-10 text-white animate-on-load fade-in-up-10">
+                        خريجون من ذهب: عمالقة صنعوا التاريخ
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-11">
+                        إن القيمة الحقيقية لكلية العلوم لا تكمن في مبانيها، بل في خريجيها الذين تركوا بصمات لا تُمحى:
+                    </p>
+
+                    <h4 class="text-xl md:text-2xl font-semibold mb-3 mt-6 text-accent-green animate-on-load fade-in-up-12">
+                        1. الدكتورة سميرة موسى: رائدة عصر الذرة
+                    </h4>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-13">
+                        تُعد الدكتورة سميرة موسى واحدة من أبرز خريجات الكلية. كانت أول امرأة تحصل على درجة الماجستير من الكلية، وأول معيدة بها. تخصصت في مجال الفيزياء النووية، وسافرت في بعثة إلى بريطانيا ثم الولايات المتحدة.
+                    </p>
+                    
+                    <!-- Placeholder Image for Sameera Moussa -->
+                    <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Dr+Sameera+Moussa" 
+                         alt="صورة للدكتورة سميرة موسى" 
+                         class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-6 animate-on-load fade-in-up-14">
+                    
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-15">
+                        كان حلمها الأكبر هو "الذرة من أجل السلام"، وسعت لجعل العلاج بالطاقة النووية متاحاً للجميع. على الرغم من وفاتها المأساوية في حادث غامض عام 1952، إلا أن إرثها كعالمة وطنية رائدة لا يزال خالداً.
+                    </p>
+
+                    <h4 class="text-xl md:text-2xl font-semibold mb-3 mt-6 text-accent-green animate-on-load fade-in-up-16">
+                        2. الدكتور أحمد زويل: من قاعة المحاضرات إلى نوبل
+                    </h4>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-17">
+                        يظل الدكتور أحمد زويل هو الأيقونة الأبرز لخريجي كلية العلوم. تخرج من قسم الكيمياء عام 1967 بتقدير امتياز مع مرتبة الشرف.
+                    </p>
+                    
+                    <!-- Placeholder Image for Ahmed Zewail -->
+                    <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Dr+Ahmed+Zewail" 
+                         alt="صورة للدكتور أحمد زويل" 
+                         class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-6 animate-on-load fade-in-up-18">
+                    
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-19">
+                        انطلق "زويل" من هذه الكلية إلى الولايات المتحدة ليغير وجه علم الكيمياء. باختراعه لكاميرا "الفيمتوثانية"، استطاع تصوير التفاعلات الكيميائية في زمنها الحقيقي، وهو إنجاز استحق عليه <strong class="text-white">جائزة نوبل في الكيمياء عام 1999</strong>. ظل "زويل" مرتبطاً بجامعته، وكان دليلاً حياً على أن التعليم في كلية العلوم المصرية يمكن أن ينتج علماء بمقاييس عالمية.
+                    </p>
+
+                    <h4 class="text-xl md:text-2xl font-semibold mb-3 mt-6 text-accent-green animate-on-load fade-in-up-20">
+                        3. عمالقة في كل مجال
+                    </h4>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-21">
+                        لم يتوقف العطاء عند هذا الحد، بل تخرج من الكلية آلاف العلماء الذين أسسوا لنهضة مصر في مجالات متعددة، منهم:
+                    </p>
+                    <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-22">
+                        <li><strong class="text-white">الدكتور رشدي سعيد:</strong> أحد أعظم الجيولوجيين في العالم، وصاحب الفضل في رسم خريطة مصر الجيولوجية الحديثة.</li>
+                        <li><strong class="text-white">الدكتور عصام حجي:</strong> عالم الفضاء المصري الذي عمل في وكالة الفضاء الأمريكية "ناسا"، وهو خريج قسم الفلك.</li>
+                        <li><strong class="text-white">آلاف الأساتذة والباحثين:</strong> الذين أصبحوا هم أنفسهم أعمدة الجامعات المصرية ومراكز البحوث، وواصلوا مسيرة العطاء.</li>
+                    </ul>
+
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 mt-10 text-white animate-on-load fade-in-up-23">
+                        إرث ممتد
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-24">
+                        منذ عام 1925 وحتى اليوم، تظل كلية العلوم هي "القلب النابض" للبحث العلمي في مصر. إنها قصة نجاح بدأت بحلم وطني، ورعاها عمالقة مثل "مصطفى مشرفة"، وأثمرت عباقرة مثل "سميرة موسى" و"أحمد زويل". تاريخها هو شهادة على أن الاستثمار في العقل البشري هو أثمن استثمار لبناء الأوطان.
+                    </p>
+                </div>
+            </div>
+            <!-- *** END Updated History Page *** -->
+
             <div id="page-summaries" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الملخصات</h2><p class="text-lg text-gray-200">هنا يمكنك تصفح ومشاركة الملخصات الدراسية المختلفة.</p></div></div>
             <div id="page-about" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">عن فريق Cairo SciVerse</h2><p class="text-lg text-gray-200">تعرف على الفريق القائم على هذا المشروع وأهدافه.</p></div></div>
             <div id="page-contact" class="page-content hidden">
@@ -594,11 +668,11 @@
         // --- *** NEW: Helper to create 8 lecture stubs, mostly disabled *** ---
         function createLectureStubs() {
             return [
-                { youtube: '#', lab: null, pdf: '#' }, // Lec 1 (some data)
+                { youtube: null, lab: null, pdf: null }, // Lec 1 (no data)
                 { youtube: null, lab: null, pdf: null }, // Lec 2 (no data)
-                { youtube: null, lab: null, pdf: '#' }, // Lec 3 (pdf only)
+                { youtube: null, lab: null, pdf: null }, // Lec 3 
                 { youtube: null, lab: null, pdf: null }, // Lec 4
-                { youtube: '#', lab: '#', pdf: null }, // Lec 5 (yt and lab)
+                { youtube: null, lab: null, pdf: null }, // Lec 5
                 { youtube: null, lab: null, pdf: null }, // Lec 6
                 { youtube: null, lab: null, pdf: null }, // Lec 7
                 { youtube: null, lab: null, pdf: null }  // Lec 8
@@ -665,7 +739,22 @@
                 ],
                 // Placeholder for other departments
                 'جيولوجيا منفرد': [ { name: 'علم المعادن', id: 'geo-min', lectures: createLectureStubs() } ],
-                'علوم حاسب منفرد': [ { name: 'هياكل بيانات', id: 'cs-ds', lectures: createLectureStubs() } ]
+                'علوم حاسب منفرد': [ { name: 'هياكل بيانات', id: 'cs-ds', lectures: createLectureStubs() } ],
+                'علوم فضاء(فلك)': [ { name: 'مقدمة في الفلك', id: 'astro-intro', lectures: createLectureStubs() } ],
+                'بايوفيزياء منفرد': [ { name: 'فيزياء حيوية', id: 'biophys-intro', lectures: createLectureStubs() } ],
+                'جيوفيزياء منفرد': [ { name: 'مقدمة جيوفيزياء', id: 'geophys-intro', lectures: createLectureStubs() } ],
+                'رياضيات/إحصاء': [ { name: 'مبادئ إحصاء', id: 'math-stat', lectures: createLectureStubs() } ],
+                'رياضيات/علوم حاسب': [ { name: 'برمجة هيكلية', id: 'math-cs-prog', lectures: createLectureStubs() } ],
+                'رياضيات/فيزياء': [ { name: 'رياضيات للفيزياء', id: 'math-phys', lectures: createLectureStubs() } ],
+                'فيزياء/فلك': [ { name: 'فلك عام', id: 'phys-astro', lectures: createLectureStubs() } ],
+                'فيزياء/علوم جوية': [ { name: 'أرصاد جوية', id: 'phys-meteo', lectures: createLectureStubs() } ],
+                'كيمياء/فيزياء': [ { name: 'كيمياء فيزيائية (ك/ف)', id: 'chem-phys-dual', lectures: createLectureStubs() } ],
+                'كيمياء/كيمياء حيوي': [ { name: 'كيمياء حيوية (1)', id: 'chem-bio1', lectures: createLectureStubs() } ],
+                'كيمياء/نبات': [ { name: 'فسيولوجيا نبات', id: 'chem-bot', lectures: createLectureStubs() } ],
+                'كيمياء/ميكروبيولوجي': [ { name: 'أساسيات ميكروبيولوجي', id: 'chem-micro', lectures: createLectureStubs() } ],
+                'كيمياء/حيوان': [ { name: 'أساسيات حيوان', id: 'chem-zoo', lectures: createLectureStubs() } ],
+                'كيمياء/جيولوجيا': [ { name: 'جيولوجيا كيميائية', id: 'chem-geo', lectures: createLectureStubs() } ],
+                'كيمياء/حشرات': [ { name: 'أساسيات حشرات', id: 'chem-ent', lectures: createLectureStubs() } ]
             },
             // Placeholder data for Year 3 and 4
             'السنة الثالثة': {
@@ -819,7 +908,7 @@
             closeMenu();
         }
 
-        // --- *** NEW HELPER FUNCTION TO CREATE LECTURE BUTTONS *** ---
+        // --- *** HELPER FUNCTION TO CREATE LECTURE BUTTONS *** ---
         function generateLinkButton(link, type) {
             let icon = '';
             let text = '';
@@ -864,9 +953,16 @@
             departmentsContainer.innerHTML = ''; 
             departmentsTitle.textContent = `أقسام ${currentYear}`;
 
-            const departments = departmentsData[currentYear];
+            const departmentsList = departmentsData[currentYear];
+            
+            // Check if it's an array (like Year 2) or an object (like Year 3/4)
+            const departments = Array.isArray(departmentsList) ? departmentsList : Object.keys(departmentsList);
+
             if (departments && departments.length > 0) {
                  departments.forEach((deptName, index) => {
+                    // Check if deptName is valid
+                    if(!deptName) return; 
+
                     const deptCard = `
                         <a href="#" class="selection-card department-choice animate-on-load fade-in-up-${index + 1}" 
                            data-department="${deptName}"
@@ -910,8 +1006,9 @@
                 subjectsBackBtn.dataset.target = 'page-academic-years';
                 subjectsBackBtnText.textContent = 'العودة للسنوات';
             } else if (yearsWithDepartments.includes(currentYear)) {
-                subjects = subjectsData[currentYear]?.[currentDepartment];
-                subjectsListTitle.textContent = `مواد ${currentDepartment}`;
+                // Handle cases where some departments might not have subjects added yet
+                subjects = subjectsData[currentYear]?.[currentDepartment] || [];
+                subjectsListTitle.textContent = `مواد ${currentDepartment || 'القسم'}`;
                 subjectsBackBtn.dataset.target = 'page-departments';
                 subjectsBackBtnText.textContent = 'العودة للأقسام';
             } else { 
@@ -927,9 +1024,11 @@
                 // Loop through subjects (all should be objects now)
                 subjects.forEach((subject, index) => {
                     const isObject = typeof subject === 'object' && subject !== null;
-                    const subjectName = isObject ? subject.name : subject;
-                    const subjectId = isObject ? subject.id : subjectName; // Use name as ID if it's just a string
-                    const subjectIcon = isObject ? (subject.icon || '') : ''; // Handle icon
+                    if (!isObject) return; // Skip if data is malformed
+
+                    const subjectName = subject.name;
+                    const subjectId = subject.id;
+                    const subjectIcon = subject.icon || ''; // Handle icon
 
                     const subjectCard = `
                         <a href="#" class="selection-card subject-choice animate-on-load fade-in-up-${index + 1}" 
@@ -943,6 +1042,10 @@
                 });
             } else {
                 subjectsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد مواد متاحة حاليًا لهذا الاختيار.</p>`;
+            }
+            
+            if(subjectsContainer.innerHTML === '') {
+                 subjectsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد مواد متاحة حاليًا لهذا الاختيار.</p>`;
             }
 
             // --- *** UPDATED CLICK LISTENER FOR SUBJECTS *** ---
@@ -1141,4 +1244,5 @@
     </script>
 </body>
 </html>
+
 
