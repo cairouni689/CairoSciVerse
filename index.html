@@ -300,10 +300,12 @@
                 <li><a href="#" data-target="page-home" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الرئيسية</a></li>
                 <li><a href="#" data-target="page-subjects" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تعريف مواد اولى</a></li>
                 <li><a href="#" data-target="page-general" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام العامه</a></li>
-                <li><a href="#" data-target="page-credit" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الاقسام الكريديت</a></li>
+                <!-- *** UPDATED: Renamed "Credit" to "Specialized Programs" *** -->
+                <li><a href="#" data-target="page-credit" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">البرامج النوعية المتخصصه</a></li>
                 <li><a href="#" data-target="page-after-grad" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">ماذا بعد التخرج</a></li>
                 <li><a href="#" data-target="page-history" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تاريخ الكلية</a></li>
-                <li><a href="#" data-target="page-summaries" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li>
+                <!-- *** REMOVED: Summaries link *** -->
+                <!-- <li><a href="#" data-target="page-summaries" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">الملخصات</a></li> -->
                 <li><a href="#" data-target="page-about" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">عن فريق cairo SciVerse</a></li>
                 <li><a href="#" data-target="page-contact" class="menu-link block p-3 text-lg text-gray-200 rounded-lg hover:bg-white hover:bg-opacity-10 transition-colors duration-200">تواصل معنا</a></li>
             </ul>
@@ -512,9 +514,11 @@
             <!-- ======================= OTHER STATIC PAGES ======================= -->
             <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
             <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
-            <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام الكريديت</h2><p class="text-lg text-gray-200">استعراض للأقسام المتاحة بنظام الساعات المعتمدة (الكريديت).</p></div></div>
+            <!-- *** UPDATED: Renamed "Credit" page title and text *** -->
+            <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">البرامج النوعية المتخصصه</h2><p class="text-lg text-gray-200">استعراض للبرامج المتاحة بنظام الساعات المعتمدة (البرامج النوعية المتخصصه).</p></div></div>
             <div id="page-after-grad" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">ماذا بعد التخرج</h2><p class="text-lg text-gray-200">نظرة على المسارات الوظيفية والأكاديمية المتاحة لخريجي كلية العلوم.</p></div></div>
             <div id="page-history" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تاريخ الكلية</h2><p class="text-lg text-gray-200">نبذة عن تاريخ إنشاء وتطور كلية العلوم.</p></div></div>
+            <!-- *** This page is now orphaned as the link is removed, but we leave it *** -->
             <div id="page-summaries" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الملخصات</h2><p class="text-lg text-gray-200">هنا يمكنك تصفح ومشاركة الملخصات الدراسية المختلفة.</p></div></div>
             <div id="page-about" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">عن فريق Cairo SciVerse</h2><p class="text-lg text-gray-200">تعرف على الفريق القائم على هذا المشروع وأهدافه.</p></div></div>
             <div id="page-contact" class="page-content hidden">
@@ -575,24 +579,45 @@
             'السنة الرابعة': newDepartments,
         };
         
+        // --- Daily Verse Logic ---
+        const dailyVerses = [
+            { text: "إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لِّأُولِي الْأَلْبَابِ", surah: "سورة آل عمران، 190" },
+            { text: "وَقُل رَّبِّ زِدْنِي عِلْمًا", surah: "سورة طه، 114" },
+            { text: "يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ", surah: "سورة المجادلة، 11" },
+            { text: "فَاصْبِرْ صَبْرًا جَمِيلًا", surah: "سورة المعارج، 5" },
+            { text: "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ", surah: "سورة البقرة، 216" },
+            { text: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا", surah: "سورة البقرة، 286" },
+            { text: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ", surah: "سورة الطلاق، 3" },
+            { text: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", surah: "سورة العلق، 1" }
+        ];
+
+        // --- *** NEW: Helper to create 8 lecture stubs, mostly disabled *** ---
+        function createLectureStubs() {
+            return [
+                { youtube: '#', lab: null, pdf: '#' }, // Lec 1 (some data)
+                { youtube: null, lab: null, pdf: null }, // Lec 2 (no data)
+                { youtube: null, lab: null, pdf: '#' }, // Lec 3 (pdf only)
+                { youtube: null, lab: null, pdf: null }, // Lec 4
+                { youtube: '#', lab: '#', pdf: null }, // Lec 5 (yt and lab)
+                { youtube: null, lab: null, pdf: null }, // Lec 6
+                { youtube: null, lab: null, pdf: null }, // Lec 7
+                { youtube: null, lab: null, pdf: null }  // Lec 8
+            ];
+        }
+        
         // --- *** UPDATED DATA STRUCTURE *** ---
-        // Added objects for Year 1 to hold lecture links
+        // All subjects now follow the object structure with 8 lecture stubs
         const subjectsData = {
             'السنة الأولى': {
                 '1': [
                     { 
                         name: 'كيمياء عامة (1)', 
                         id: 'chem1', 
-                        // Array of 8 lecture objects (some with null links)
                         lectures: [
-                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 1 (links available)
-                            { youtube: '#', lab: null, pdf: '#' }, // Lec 2 (no lab)
-                            { youtube: '#', lab: '#', pdf: null }, // Lec 3 (no pdf)
-                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 4
-                            { youtube: null, lab: null, pdf: '#' }, // Lec 5 (only pdf)
-                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 6
-                            { youtube: null, lab: null, pdf: null }, // Lec 7 (no data)
-                            { youtube: '#', lab: '#', pdf: '#' }  // Lec 8
+                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: '#', lab: null, pdf: '#' },
+                            { youtube: '#', lab: '#', pdf: null }, { youtube: '#', lab: '#', pdf: '#' },
+                            { youtube: null, lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
+                            { youtube: null, lab: null, pdf: null }, { youtube: '#', lab: '#', pdf: '#' }
                         ]
                     },
                     { 
@@ -605,44 +630,91 @@
                             { youtube: '#', lab: '#', pdf: '#' }, { youtube: null, lab: null, pdf: null }
                         ]
                     },
-                    'رياضيات (1)', // Kept as string (will show "no data")
-                    'جيولوجيا عامة',
-                    'حيوان عام',
-                    'نبات عام'
+                    { name: 'رياضيات (1)', id: 'math1', lectures: createLectureStubs() },
+                    { name: 'جيولوجيا عامة', id: 'geo1', lectures: createLectureStubs() },
+                    { name: 'حيوان عام', id: 'zoo1', lectures: createLectureStubs() },
+                    { name: 'نبات عام', id: 'bot1', lectures: createLectureStubs() }
                 ],
                 '2': [
-                    // Same structure can be applied here
-                    'كيمياء عامة (2)', 'فيزياء عامة (2)', 'رياضيات (2)', 'ميكانيكا', 'مقدمة في الحاسب', 'لغة إنجليزية'
+                    { name: 'كيمياء عامة (2)', id: 'chem2', lectures: createLectureStubs() },
+                    { name: 'فيزياء عامة (2)', id: 'phys2', lectures: createLectureStubs() },
+                    { name: 'رياضيات (2)', id: 'math2', lectures: createLectureStubs() },
+                    { name: 'ميكانيكا', id: 'mech1', lectures: createLectureStubs() },
+                    { name: 'مقدمة في الحاسب', id: 'cs1', lectures: createLectureStubs() },
+                    { name: 'لغة إنجليزية', id: 'eng1', lectures: createLectureStubs() }
                 ]
             },
             'السنة الثانية': {
-                'رياضيات منفرد': ['تحليل رياضي (3)', 'جبر (2)', 'معادلات تفاضلية (2)', 'ميكانيكا تحليلية'], // Example data
-                'فيزياء منفرد': ['كهربية ومغناطيسية (1)', 'ديناميكا حرارية', 'فيزياء حديثة (1)', 'بصريات فيزيائية'], // Example data
-                'كيمياء منفرد': ['كيمياء فيزيائية (2)', 'كيمياء عضوية (2)', 'كيمياء غير عضوية (2)', 'كيمياء تحليلية (2)'], // Example data
+                'رياضيات منفرد': [
+                    { name: 'تحليل رياضي (3)', id: 'math-ana3', lectures: createLectureStubs() },
+                    { name: 'جبر (2)', id: 'math-alg2', lectures: createLectureStubs() },
+                    { name: 'معادلات تفاضلية (2)', id: 'math-de2', lectures: createLectureStubs() },
+                    { name: 'ميكانيكا تحليلية', id: 'math-mech2', lectures: createLectureStubs() }
+                ],
+                'فيزياء منفرد': [
+                    { name: 'كهربية ومغناطيسية (1)', id: 'phys-em1', lectures: createLectureStubs() },
+                    { name: 'ديناميكا حرارية', id: 'phys-thermo', lectures: createLectureStubs() },
+                    { name: 'فيزياء حديثة (1)', id: 'phys-mod1', lectures: createLectureStubs() },
+                    { name: 'بصريات فيزيائية', id: 'phys-optics', lectures: createLectureStubs() }
+                ],
+                'كيمياء منفرد': [
+                    { name: 'كيمياء فيزيائية (2)', id: 'chem-phys2', lectures: createLectureStubs() },
+                    { name: 'كيمياء عضوية (2)', id: 'chem-org2', lectures: createLectureStubs() },
+                    { name: 'كيمياء غير عضوية (2)', id: 'chem-inorg2', lectures: createLectureStubs() },
+                    { name: 'كيمياء تحليلية (2)', id: 'chem-ana2', lectures: createLectureStubs() }
+                ],
+                // Placeholder for other departments
+                'جيولوجيا منفرد': [ { name: 'علم المعادن', id: 'geo-min', lectures: createLectureStubs() } ],
+                'علوم حاسب منفرد': [ { name: 'هياكل بيانات', id: 'cs-ds', lectures: createLectureStubs() } ]
+            },
+            // Placeholder data for Year 3 and 4
+            'السنة الثالثة': {
+                 'رياضيات منفرد': [
+                    { name: 'تحليل مركب (1)', id: 'math-comp1', lectures: createLectureStubs() },
+                    { name: 'جبر (3)', id: 'math-alg3', lectures: createLectureStubs() }
+                ],
+                'فيزياء منفرد': [
+                    { name: 'ميكانيكا الكم (1)', id: 'phys-qm1', lectures: createLectureStubs() },
+                    { name: 'فيزياء إحصائية (1)', id: 'phys-stat1', lectures: createLectureStubs() }
+                ],
+                'كيمياء منفرد': [
+                    { name: 'كيمياء فيزيائية (3)', id: 'chem-phys3', lectures: createLectureStubs() },
+                    { name: 'كيمياء عضوية (3)', id: 'chem-org3', lectures: createLectureStubs() }
+                ]
+            },
+            'السنة الرابعة': {
+                 'رياضيات منفرد': [
+                    { name: 'تحليل دالي', id: 'math-func', lectures: createLectureStubs() },
+                    { name: 'مشروع تخرج رياضيات', id: 'math-proj', lectures: createLectureStubs() }
+                ],
+                'فيزياء منفرد': [
+                    { name: 'فيزياء الجوامد (1)', id: 'phys-solid1', lectures: createLectureStubs() },
+                    { name: 'مشروع تخرج فيزياء', id: 'phys-proj', lectures: createLectureStubs() }
+                ],
+                'كيمياء منفرد': [
+                    { name: 'كيمياء فيزيائية (4)', id: 'chem-phys4', lectures: createLectureStubs() },
+                    { name: 'مشروع تخرج كيمياء', id: 'chem-proj', lectures: createLectureStubs() }
+                ]
             },
             'متطلبات الجامعة': [
-                { name: 'قضايا مجتمعية', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>' },
-                { name: 'مبادئ القانون والدستور', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>' },
-                { name: 'حاسب آلي', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>' },
-                { name: 'لغة انجليزية', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>' }
+                { name: 'قضايا مجتمعية', id: 'uni-social', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>', lectures: createLectureStubs() },
+                { name: 'مبادئ القانون والدستور', id: 'uni-law', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>', lectures: createLectureStubs() },
+                { name: 'حاسب آلي', id: 'uni-cs', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>', lectures: createLectureStubs() },
+                { name: 'لغة انجليزية', id: 'uni-eng', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>', lectures: createLectureStubs() }
             ],
             'دراسات عليا': {
-                '1': ['مناهج بحث علمي', 'إحصاء متقدم', 'مادة تخصصية 1'],
-                '2': ['مادة تخصصية 2', 'كتابة علمية', 'مشروع التخرج']
+                '1': [
+                    { name: 'مناهج بحث علمي', id: 'grad-research', lectures: createLectureStubs() },
+                    { name: 'إحصاء متقدم', id: 'grad-stats', lectures: createLectureStubs() },
+                    { name: 'مادة تخصصية 1', id: 'grad-spec1', lectures: createLectureStubs() }
+                ],
+                '2': [
+                    { name: 'مادة تخصصية 2', id: 'grad-spec2', lectures: createLectureStubs() },
+                    { name: 'كتابة علمية', id: 'grad-writing', lectures: createLectureStubs() },
+                    { name: 'مشروع التخرج', id: 'grad-proj', lectures: createLectureStubs() }
+                ]
             }
         };
-
-        // --- Daily Verse Logic ---
-        const dailyVerses = [
-            { text: "إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لِّأُولِي الْأَلْبَابِ", surah: "سورة آل عمران، 190" },
-            { text: "وَقُل رَّبِّ زِدْنِي عِلْمًا", surah: "سورة طه، 114" },
-            { text: "يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ", surah: "سورة المجادلة، 11" },
-            { text: "فَاصْبِرْ صَبْرًا جَمِيلًا", surah: "سورة المعارج، 5" },
-            { text: "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ", surah: "سورة البقرة، 216" },
-            { text: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا", surah: "سورة البقرة، 286" },
-            { text: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ", surah: "سورة الطلاق، 3" },
-            { text: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", surah: "سورة العلق، 1" }
-        ];
         
         // --- Helper function to save current state to sessionStorage ---
         function saveState() {
@@ -843,6 +915,7 @@
                 subjectsBackBtn.dataset.target = 'page-departments';
                 subjectsBackBtnText.textContent = 'العودة للأقسام';
             } else { 
+                // Handles 'السنة الأولى' and 'دراسات عليا'
                 subjects = subjectsData[currentYear]?.[currentSemester];
                 const semesterText = currentSemester === '1' ? 'الأول' : 'الثاني';
                 subjectsListTitle.textContent = `مواد ${currentYear} - الفصل الدراسي ${semesterText}`;
@@ -851,7 +924,7 @@
             }
 
             if (subjects && subjects.length > 0) {
-                // Loop through subjects (can be string or object)
+                // Loop through subjects (all should be objects now)
                 subjects.forEach((subject, index) => {
                     const isObject = typeof subject === 'object' && subject !== null;
                     const subjectName = isObject ? subject.name : subject;
@@ -883,7 +956,16 @@
                     document.getElementById('subject-detail-title').textContent = subjectName;
 
                     // --- NEW DYNAMIC LECTURE CARD LOGIC ---
-                    const dataSet = subjectsData[currentYear]?.[currentSemester] || subjectsData[currentYear]?.[currentDepartment] || subjectsData[currentYear];
+                    // Find the correct data source
+                    let dataSet;
+                    if (currentYear === 'متطلبات الجامعة') {
+                        dataSet = subjectsData[currentYear];
+                    } else if (yearsWithDepartments.includes(currentYear)) {
+                        dataSet = subjectsData[currentYear]?.[currentDepartment];
+                    } else {
+                        dataSet = subjectsData[currentYear]?.[currentSemester];
+                    }
+                    
                     const subjectData = dataSet?.find(s => (typeof s === 'object' ? s.id : s) === subjectId);
                     
                     const lecturesContainer = document.getElementById('tab-lectures-content');
@@ -918,7 +1000,7 @@
                     }
                     
                     if (!hasLectureData) {
-                         // Fallback for subjects without specific lecture data (like "رياضيات 1")
+                         // Fallback for subjects without specific lecture data
                          lecturesContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد بيانات محاضرات مُضافة لهذه المادة حتى الآن.</p>`;
                     }
                     // --- END NEW LOGIC ---
@@ -997,9 +1079,11 @@
                 if (yearsWithDepartments.includes(currentYear)) {
                     navigateToPage('page-departments');
                 } else if (currentYear === 'متطلبات الجامعة') {
+                    // Directly show subjects for 'متطلبات الجامعة'
                     navigateToPage('page-subjects-list');
                 }
                 else { 
+                    // Handles 'السنة الأولى' and 'دراسات عليا'
                     navigateToPage('page-semesters');
                 }
             });
@@ -1057,5 +1141,4 @@
     </script>
 </body>
 </html>
-
 
