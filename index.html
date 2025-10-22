@@ -238,6 +238,48 @@
         .back-btn:hover {
             background-color: rgba(255,255,255,0.1);
         }
+        
+        /* --- Lecture Link Button Styles --- */
+        .lecture-link-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            width: 80px; /* Fixed width for alignment */
+            height: 80px; /* Fixed height for alignment */
+            justify-content: center;
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .lecture-link-btn svg {
+            width: 1.75rem; /* 28px */
+            height: 1.75rem;
+        }
+        .lecture-link-btn .link-text {
+            font-size: 0.875rem; /* 14px */
+            font-weight: 600;
+        }
+        
+        /* Enabled State */
+        .lecture-link-btn.enabled {
+            background-color: var(--accent-green);
+            color: var(--text-dark);
+        }
+        .lecture-link-btn.enabled:hover {
+             transform: scale(1.05);
+             box-shadow: 0 4px 15px rgba(128, 255, 114, 0.2);
+        }
+
+        /* Disabled State */
+        .lecture-link-btn.disabled {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.4);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
 
     </style>
 </head>
@@ -430,10 +472,35 @@
                             <h3 class="text-2xl font-semibold mb-4">ملخصات المادة</h3>
                             <p>هنا ستجد ملخصات ومراجعات هامة للمادة لمساعدتك على الاستعداد للامتحانات.</p>
                         </div>
+                        <!-- *** UPDATED LECTURES TAB *** -->
                         <div id="tab-lectures" class="tab-content hidden">
                              <h3 class="text-2xl font-semibold mb-4">محاضرات المادة</h3>
-                            <p>يمكنك هنا الوصول إلى تسجيلات المحاضرات أو ملفات الشرح الخاصة بكل محاضرة.</p>
+                             <!-- Container for dynamic lecture cards -->
+                            <div id="tab-lectures-content" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <!-- Lecture cards will be injected here by JavaScript -->
+                                <!-- 
+                                Example structure:
+                                <div class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg">
+                                    <h4 class="text-xl font-semibold mb-4 text-white">المحاضرة 1</h4>
+                                    <div class="flex items-center justify-center gap-6">
+                                        <a href="..." target="_blank" class="lecture-link-btn enabled">
+                                            <svg>...</svg>
+                                            <span class="link-text">المحاضرة</span>
+                                        </a>
+                                        <div class="lecture-link-btn disabled">
+                                            <svg>...</svg>
+                                            <span class="link-text">المعمل</span>
+                                        </div>
+                                        <a href="..." target="_blank" class="lecture-link-btn enabled">
+                                            <svg>...</svg>
+                                            <span class="link-text">PDF</span>
+                                        </a>
+                                    </div>
+                                </div> 
+                                -->
+                            </div>
                         </div>
+                        <!-- *** END UPDATED TAB *** -->
                         <div id="tab-instructions" class="tab-content hidden">
                             <h3 class="text-2xl font-semibold mb-4">تعليمات هامة</h3>
                             <p>نصائح وإرشادات حول كيفية دراسة المادة، طبيعة الامتحانات، وأفضل طرق المذاكرة.</p>
@@ -508,10 +575,45 @@
             'السنة الرابعة': newDepartments,
         };
         
+        // --- *** UPDATED DATA STRUCTURE *** ---
+        // Added objects for Year 1 to hold lecture links
         const subjectsData = {
             'السنة الأولى': {
-                '1': ['كيمياء عامة (1)', 'فيزياء عامة (1)', 'رياضيات (1)', 'جيولوجيا عامة', 'حيوان عام', 'نبات عام'],
-                '2': ['كيمياء عامة (2)', 'فيزياء عامة (2)', 'رياضيات (2)', 'ميكانيكا', 'مقدمة في الحاسب', 'لغة إنجليزية']
+                '1': [
+                    { 
+                        name: 'كيمياء عامة (1)', 
+                        id: 'chem1', 
+                        // Array of 8 lecture objects (some with null links)
+                        lectures: [
+                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 1 (links available)
+                            { youtube: '#', lab: null, pdf: '#' }, // Lec 2 (no lab)
+                            { youtube: '#', lab: '#', pdf: null }, // Lec 3 (no pdf)
+                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 4
+                            { youtube: null, lab: null, pdf: '#' }, // Lec 5 (only pdf)
+                            { youtube: '#', lab: '#', pdf: '#' }, // Lec 6
+                            { youtube: null, lab: null, pdf: null }, // Lec 7 (no data)
+                            { youtube: '#', lab: '#', pdf: '#' }  // Lec 8
+                        ]
+                    },
+                    { 
+                        name: 'فيزياء عامة (1)', 
+                        id: 'phys1',
+                        lectures: [
+                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
+                            { youtube: null, lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
+                            { youtube: '#', lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
+                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: null, lab: null, pdf: null }
+                        ]
+                    },
+                    'رياضيات (1)', // Kept as string (will show "no data")
+                    'جيولوجيا عامة',
+                    'حيوان عام',
+                    'نبات عام'
+                ],
+                '2': [
+                    // Same structure can be applied here
+                    'كيمياء عامة (2)', 'فيزياء عامة (2)', 'رياضيات (2)', 'ميكانيكا', 'مقدمة في الحاسب', 'لغة إنجليزية'
+                ]
             },
             'السنة الثانية': {
                 'رياضيات منفرد': ['تحليل رياضي (3)', 'جبر (2)', 'معادلات تفاضلية (2)', 'ميكانيكا تحليلية'], // Example data
@@ -644,6 +746,44 @@
             
             closeMenu();
         }
+
+        // --- *** NEW HELPER FUNCTION TO CREATE LECTURE BUTTONS *** ---
+        function generateLinkButton(link, type) {
+            let icon = '';
+            let text = '';
+            
+            if (type === 'youtube') {
+                // YouTube (Play) Icon
+                icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm14.024-.983a1.125 1.125 0 010 1.966l-5.603 3.08a1.125 1.125 0 01-1.68-.983V8.9a1.125 1.125 0 011.68-.983l5.603 3.08z" clip-rule="evenodd" /></svg>`;
+                text = 'المحاضرة';
+            } else if (type === 'lab') {
+                // Lab (Beaker) Icon
+                icon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 2.25c.399 0 .79.04.1.05v.39c0 .32-.15.63-.42.85l-1.08.81a1.5 1.5 0 01-1.8 0L9.12 4.3a.98.98 0 01-.42-.85V3.3c.21-.01.401-.05.1-.05h5.1zM6.88 8.03l-.06-.05a1.8 1.8 0 00-1.58 0L3.12 9.6a1.5 1.5 0 000 2.8l2.12 1.58c.53.4 1.2.6 1.8.6h8.1a1.8 1.8 0 001.8-.6l2.12-1.58a1.5 1.5 0 000-2.8L15.6 7.98a1.8 1.8 0 00-1.58 0l-.06.05v5.94c0 1.02-.83 1.85-1.85 1.85h-2.14a1.85 1.85 0 01-1.85-1.85V8.03z" /></svg>`;
+                text = 'المعمل';
+            } else if (type === 'pdf') {
+                // PDF (Document) Icon
+                icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a.375.375 0 01-.375-.375V6.75A3.75 3.75 0 009 3H5.625zM10.125 6a.375.375 0 00-.375.375v1.875c0 2.071 1.679 3.75 3.75 3.75H15a.375.375 0 00.375-.375V9.75A1.875 1.875 0 0013.5 7.875h-1.875a.375.375 0 01-.375-.375V5.625A1.875 1.875 0 009.375 3.75H7.875a.375.375 0 00-.375.375v1.875z" clip-rule="evenodd" /></svg>`;
+                text = 'PDF';
+            }
+
+            if (link) {
+                // If link exists, return an enabled <a> tag
+                return `
+                    <a href="${link}" target="_blank" rel="noopener noreferrer" class="lecture-link-btn enabled">
+                        ${icon}
+                        <span class="link-text">${text}</span>
+                    </a>
+                `;
+            } else {
+                // If link is null, return a disabled <div>
+                return `
+                    <div class="lecture-link-btn disabled">
+                        ${icon}
+                        <span class="link-text">${text}</span>
+                    </div>
+                `;
+            }
+        }
         
         function displayDepartments() {
             const departmentsContainer = document.getElementById('departments-container');
@@ -656,7 +796,10 @@
             if (departments && departments.length > 0) {
                  departments.forEach((deptName, index) => {
                     const deptCard = `
-                        <a href="#" class="selection-card department-choice animate-on-load fade-in-up-${index + 1}" data-department="${deptName}">
+                        <a href="#" class="selection-card department-choice animate-on-load fade-in-up-${index + 1}" 
+                           data-department="${deptName}"
+                           data-subject-name="${deptName}" 
+                           data-subject-id="${deptName}">
                             <span class="card-text text-base">${deptName}</span>
                         </a>
                     `;
@@ -677,6 +820,7 @@
             });
         }
 
+        // --- *** UPDATED FUNCTION TO HANDLE NEW DATA *** ---
         function displaySubjects() {
             const subjectsContainer = document.getElementById('subjects-container');
             const subjectsListTitle = document.getElementById('subjects-list-title');
@@ -707,14 +851,18 @@
             }
 
             if (subjects && subjects.length > 0) {
+                // Loop through subjects (can be string or object)
                 subjects.forEach((subject, index) => {
                     const isObject = typeof subject === 'object' && subject !== null;
                     const subjectName = isObject ? subject.name : subject;
-                    const subjectIcon = isObject ? `<div class="icon-wrapper">${subject.icon}</div>` : '';
+                    const subjectId = isObject ? subject.id : subjectName; // Use name as ID if it's just a string
+                    const subjectIcon = isObject ? (subject.icon || '') : ''; // Handle icon
 
                     const subjectCard = `
-                        <a href="#" class="selection-card subject-choice animate-on-load fade-in-up-${index + 1}" data-subject="${subjectName}">
-                            ${subjectIcon}
+                        <a href="#" class="selection-card subject-choice animate-on-load fade-in-up-${index + 1}" 
+                           data-subject-name="${subjectName}" 
+                           data-subject-id="${subjectId}">
+                            ${subjectIcon ? `<div class="icon-wrapper">${subjectIcon}</div>` : ''}
                             <span class="card-text text-lg">${subjectName}</span>
                         </a>
                     `;
@@ -724,16 +872,69 @@
                 subjectsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد مواد متاحة حاليًا لهذا الاختيار.</p>`;
             }
 
+            // --- *** UPDATED CLICK LISTENER FOR SUBJECTS *** ---
             document.querySelectorAll('.subject-choice').forEach(card => {
                 card.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const subjectName = card.dataset.subject;
+                    
+                    const subjectName = card.dataset.subjectName;
+                    const subjectId = card.dataset.subjectId;
+                    
                     document.getElementById('subject-detail-title').textContent = subjectName;
-                    // You might want to save subjectName to sessionStorage here if needed
+
+                    // --- NEW DYNAMIC LECTURE CARD LOGIC ---
+                    const dataSet = subjectsData[currentYear]?.[currentSemester] || subjectsData[currentYear]?.[currentDepartment] || subjectsData[currentYear];
+                    const subjectData = dataSet?.find(s => (typeof s === 'object' ? s.id : s) === subjectId);
+                    
+                    const lecturesContainer = document.getElementById('tab-lectures-content');
+                    lecturesContainer.innerHTML = ''; // Clear previous
+
+                    let hasLectureData = false;
+                    // Check if subjectData is an object and has a lectures array
+                    if (typeof subjectData === 'object' && subjectData.lectures) {
+                        hasLectureData = true;
+                        
+                        // Loop 8 times as requested
+                        for (let i = 0; i < 8; i++) {
+                            const lectureNum = i + 1;
+                            const lectureData = subjectData.lectures[i]; // Get data for this lecture (might be undefined)
+
+                            const youtubeLink = lectureData?.youtube;
+                            const labLink = lectureData?.lab;
+                            const pdfLink = lectureData?.pdf;
+
+                            const lectureCardHTML = `
+                                <div class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg">
+                                    <h4 class="text-xl font-semibold mb-4 text-white">المحاضرة ${lectureNum}</h4>
+                                    <div class="flex items-center justify-center gap-4 sm:gap-6">
+                                        ${generateLinkButton(youtubeLink, 'youtube')}
+                                        ${generateLinkButton(labLink, 'lab')}
+                                        ${generateLinkButton(pdfLink, 'pdf')}
+                                    </div>
+                                </div>
+                            `;
+                            lecturesContainer.innerHTML += lectureCardHTML;
+                        }
+                    }
+                    
+                    if (!hasLectureData) {
+                         // Fallback for subjects without specific lecture data (like "رياضيات 1")
+                         lecturesContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد بيانات محاضرات مُضافة لهذه المادة حتى الآن.</p>`;
+                    }
+                    // --- END NEW LOGIC ---
+
+                    // Reset tabs to show "Summaries" first by default
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    document.querySelector('.tab-btn[data-tab="tab-summaries"]').classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+                    document.getElementById('tab-summaries').classList.remove('hidden');
+
+
                     navigateToPage('page-subject-detail');
                 });
             });
         }
+
 
         // --- Event Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -856,4 +1057,5 @@
     </script>
 </body>
 </html>
+
 
