@@ -123,6 +123,7 @@
             opacity: 0; /* Start hidden */
         }
         
+        /* --- Staggered Fade-in Animations (up to 24) --- */
         .fade-in-up-1 { animation: fadeInUp 0.6s 0.2s ease-out forwards; }
         .fade-in-up-2 { animation: fadeInUp 0.6s 0.3s ease-out forwards; }
         .fade-in-up-3 { animation: fadeInUp 0.6s 0.4s ease-out forwards; }
@@ -313,7 +314,8 @@
         </nav>
     </div>
 
-    <div id="app-container" class="flex-grow w-full px-6 md:px-12 py-6">
+    <!-- *** MODIFICATION: Added overflow-x-hidden *** -->
+    <div id="app-container" class="flex-grow w-full px-6 md:px-12 py-6 overflow-x-hidden">
 
         <header class="flex justify-between items-center mb-12">
             <button id="open-menu-btn" class="text-3xl text-white z-20">
@@ -493,10 +495,195 @@
             <div id="page-subjects" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">تعريف مواد أولى</h2><p class="text-lg text-gray-200">هنا سيتم عرض شرح تفصيلي لمواد الفرقة الأولى في كلية العلوم.</p></div></div>
             <div id="page-general" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">الأقسام العامة</h2><p class="text-lg text-gray-200">تفاصيل ومعلومات عن الأقسام العامة المتاحة في الكلية.</p></div></div>
             <div id="page-credit" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">البرامج النوعية المتخصصه</h2><p class="text-lg text-gray-200">استعراض للبرامج المتاحة بنظام الساعات المعتمدة (البرامج النوعية المتخصصه).</p></div></div>
-            <div id="page-after-grad" class="page-content hidden"><div class="text-center p-8"><h2 class="text-4xl font-bold mb-4">ماذا بعد التخرج</h2><p class="text-lg text-gray-200">نظرة على المسارات الوظيفية والأكاديمية المتاحة لخريجي كلية العلوم.</p></div></div>
             
-            <!-- *** UPDATED: History Page with Content *** -->
-            <div id="page-history" class="page-content hidden">
+            <!-- ======================= AFTER GRAD PAGE (UPDATED) ======================= -->
+            <div id="page-after-grad" class="page-content hidden overflow-x-hidden">
+                <div class="p-4 md:p-8 max-w-4xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-white animate-on-load fade-in-up-1">
+                        ما وراء المقاعد: دليلك الشامل لسوق العمل بعد كلية العلوم
+                    </h2>
+                    
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-2">
+                        "ماذا سأعمل بعد التخرج من كلية العلوم؟" - هذا هو السؤال الأهم الذي يطرحه كل طالب تقريبًا. لسنوات طويلة، ارتبطت الإجابة في أذهان الكثيرين بخيارين فقط: إما العمل في التدريس أو استكمال الدراسات العليا.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-3">
+                        والحقيقة أن هذه النظرة، رغم صحتها الجزئية، هي نظرة قاصرة للغاية. خريج كلية العلوم اليوم هو واحد من أكثر الخريجين طلباً في سوق العمل الحديث، والسبب لا يكمن فقط في المعلومات التي درسها، بل في "العقلية" التي بنتها فيه الكلية.
+                    </p>
+            
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 mt-10 text-white animate-on-load fade-in-up-4">
+                        المهارات المكتسبة: "القوة الخفية" لخريج العلوم
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-8 leading-relaxed animate-on-load fade-in-up-5">
+                        قبل الحديث عن الوظائف، يجب أن تعرف ما الذي يميزك. دراستك في كلية العلوم لم تمنحك شهادة فقط، بل منحتك مجموعة من المهارات الذهنية والعملية التي تتنافس عليها كبرى الشركات:
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="animate-on-load fade-in-up-6">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-3 text-accent-green">
+                                التفكير التحليلي والنقدي (Critical & Analytical Thinking):
+                            </h4>
+                            <p class="text-lg text-gray-200 leading-relaxed">
+                                أنت قضيت سنوات في تحليل المسائل المعقدة، وتفكيكها إلى أجزاء صغيرة، وفهم العلاقات بينها. هذه هي المهارة رقم واحد في حل المشكلات في أي شركة.
+                            </p>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-7">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-3 text-accent-green">
+                                حل المشكلات (Problem Solving):
+                            </h4>
+                            <p class="text-lg text-gray-200 leading-relaxed">
+                                لم تكن تحل "مسائل" في ورقة، بل كنت تتدرب على منهجية كاملة: تحديد المشكلة، افتراض الفرضيات، اختبارها، وتحليل النتائج للوصول إلى حل. هذا هو جوهر العمل في مجالات الصناعة والتكنولوجيا.
+                            </p>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-8">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-3 text-accent-green">
+                                المهارات التقنية والمعملية (Technical Skills):
+                            </h4>
+                            <p class="text-lg text-gray-200 leading-relaxed">
+                                أنت تجيد التعامل مع الأجهزة الدقيقة، وتتبع إجراءات التشغيل القياسية (SOPs)، وتوثيق النتائج، والتعامل مع البيانات. هذه المهارات لا تُقدر بثمن في أي بيئة إنتاجية أو بحثية.
+                            </p>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-9">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-3 text-accent-green">
+                                تحليل البيانات (Data Analysis):
+                            </h4>
+                            <p class="text-lg text-gray-200 leading-relaxed">
+                                سواء كنت في قسم كيمياء، فيزياء، رياضة، أو بيولوجي، فأنت بارع في قراءة البيانات والأرقام والرسوم البيانية، واستخلاص معنى حقيقي منها. هذه المهارة هي أساس "علم البيانات" (Data Science) المطلوب حالياً.
+                            </p>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-10">
+                            <h4 class="text-xl md:text-2xl font-semibold mb-3 text-accent-green">
+                                المرونة والقدرة على التعلم (Adaptability & Learnability):
+                            </h4>
+                            <p class="text-lg text-gray-200 leading-relaxed">
+                                دراستك للمناهج العلمية المتغيرة علمتك أن "ما تعرفه اليوم قد يتغير غداً". هذه المرونة تجعلك قادراً على تعلم أي تقنية جديدة أو دخول أي مجال جديد أسرع من غيرك.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder Image -->
+                    <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Graduates+analyzing+data" 
+                         alt="خريجون يحللون البيانات في معمل" 
+                         class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-8 animate-on-load fade-in-up-11">
+            
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 mt-12 text-white animate-on-load fade-in-up-12">
+                        مجالات العمل: أين يذهب خريج "قلعة العلوم"؟
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-8 leading-relaxed animate-on-load fade-in-up-13">
+                        سوق العمل لخريج العلوم أوسع بكثير مما تتخيل، وهو ينقسم إلى قطاعات ضخمة. إليك خريطة واقعية للمجالات المتاحة بناءً على التخصصات:
+                    </p>
+                    
+                    <div class="space-y-10">
+                        <div class="animate-on-load fade-in-up-14">
+                            <h4 class="text-2xl font-semibold mb-4 text-white">1. قطاع الصناعة والإنتاج (Industry & Manufacturing)</h4>
+                            <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                                هذا هو القطاع الأضخم الذي يستوعب آلاف الخريجين سنوياً، خاصة أقسام الكيمياء والبيولوجي.
+                            </p>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج الكيمياء:</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">رقابة الجودة (QC):</strong> تحليل المواد الخام والمنتج النهائي في مصانع (الأدوية، الأغذية والمشروبات، البتروكيماويات، الدهانات، مستحضرات التجميل، المنظفات، البلاستيك). لا يوجد مصنع تقريباً بدون معمل QC.</li>
+                                <li><strong class="text-white">توكيد الجودة (QA):</strong> وضع ومراقبة أنظمة الجودة التي تضمن سلامة المنتج ومطابقته للمواصفات.</li>
+                                <li><strong class="text-white">البحث والتطوير (R&D):</strong> العمل على تطوير منتجات جديدة أو تحسين المنتجات الحالية.</li>
+                                <li><strong class="text-white">السلامة والصحة المهنية (HSE):</strong> تطبيق معايير الأمان في المصانع الكيماوية والبترولية.</li>
+                                <li><strong class="text-white">معالجة المياه:</strong> العمل في محطات تحلية ومعالجة المياه.</li>
+                            </ul>
+                        </div>
+
+                        <div class="animate-on-load fade-in-up-15">
+                            <h4 class="text-2xl font-semibold mb-4 text-white">2. قطاع الرعاية الصحية والطبية (Healthcare)</h4>
+                            <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                                قطاع حيوي ومطلوب دائماً، وهو الوجهة الأولى لخريجي الأقسام الطبية والحيوية.
+                            </p>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج البيولوجي (كيمياء حيوي، ميكروبيولوجي، حيوان، نبات):</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">معامل التحاليل الطبية:</strong> العمل كأخصائي تحاليل طبية (بعد الحصول على دبلومة التحاليل).</li>
+                                <li><strong class="text-white">شركات الأدوية:</strong> في أقسام رقابة الجودة (QC/QA)، أو كأخصائي في معامل الميكروبيولوجي.</li>
+                                <li><strong class="text-white">مراكز الأبحاث:</strong> العمل في مجال الهندسة الوراثية والتكنولوجيا الحيوية (Biotechnology).</li>
+                                <li><strong class="text-white">أخصائي تطبيقات (Application Specialist):</strong> في الشركات الموردة للأجهزة الطبية والمعملية.</li>
+                            </ul>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج الفيزياء (تخصص فيزياء طبية):</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">أخصائي فيزياء طبية:</strong> العمل في أقسام العلاج الإشعاعي والأورام في المستشفيات.</li>
+                                <li><strong class="text-white">الحماية من الإشعاع:</strong> العمل في هيئة الطاقة الذرية والمراكز النووية.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-16">
+                            <h4 class="text-2xl font-semibold mb-4 text-white">3. قطاع التكنولوجيا والبيانات (Tech & Data)</h4>
+                            <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                                أسرع القطاعات نمواً في العالم، وأصبح لخريجي علوم نصيب الأسد فيه.
+                            </p>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج علوم الحاسب (Computer Science):</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">تطوير البرمجيات:</strong> (مطور ويب، مطور تطبيقات موبايل، مطور أنظمة).</li>
+                                <li><strong class="text-white">علم البيانات والذكاء الاصطناعي (Data Science & AI):</strong> تحليل البيانات الضخمة وبناء النماذج التنبؤية.</li>
+                                <li><strong class="text-white">الأمن السيبراني (Cybersecurity):</strong> حماية الشبكات والبيانات.</li>
+                                <li><strong class="text-white">إدارة قواعد البيانات والشبكات.</strong></li>
+                            </ul>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج الرياضيات والإحصاء:</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">تحليل البيانات (Data Analysis):</strong> العمل في كل القطاعات (بنوك، اتصالات، تسويق) لتحليل سلوك العملاء وبيانات السوق.</li>
+                                <li><strong class="text-white">العلوم الاكتوارية (Actuarial Science):</strong> العمل في شركات التأمين لتقييم المخاطر (يتطلب شهادات إضافية).</li>
+                                <li><strong class="text-white">البنوك والقطاع المالي:</strong> العمل في أقسام تحليل المخاطر والاستثمار.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="animate-on-load fade-in-up-17">
+                            <h4 class="text-2xl font-semibold mb-4 text-white">4. قطاع الطاقة والموارد الطبيعية (Energy & Natural Resources)</h4>
+                            <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                                القطاع الأساسي لتأمين موارد الدولة، ويعتمد بالكامل على خريجي الجيولوجيا والفيزياء.
+                            </p>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج الجيولوجيا والجيوفيزياء:</strong>
+                            <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">شركات البترول والغاز:</strong> العمل في استكشاف الحقول (داخل مصر وخارجها).</li>
+                                <li><strong class="text-white">التعدين والمناجم:</strong> استكشاف واستخراج الثروات المعدنية (الذهب، الفوسفات، إلخ).</li>
+                                <li><strong class="text-white">الجيولوجيا الهندسية:</strong> العمل مع شركات المقاولات في تحديد صلاحية التربة للإنشاءات الكبرى (الأنفاق، الكباري، الأبراج).</li>
+                                <li><strong class="text-white">استكشاف المياه الجوفية.</strong></li>
+                            </ul>
+                            <strong class="text-lg text-gray-100 block mb-3">خريج الفيزياء:</strong>
+                             <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">العمل في هيئات الطاقة الجديدة والمتجددة.</strong></li>
+                                <li><strong class="text-white">مراكز الأبحاث البترولية والجيوفيزيائية.</strong></li>
+                            </ul>
+                        </div>
+                        
+                         <!-- Placeholder Image -->
+                        <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Engineer+at+petroleum+site" 
+                             alt="مهندس في موقع بترول" 
+                             class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-8 animate-on-load fade-in-up-18">
+
+                        <div class="animate-on-load fade-in-up-19">
+                            <h4 class="text-2xl font-semibold mb-4 text-white">5. قطاع المبيعات والتسويق العلمي (Scientific Sales)</h4>
+                            <p class="text-lg text-gray-200 mb-6 leading-relaxed">
+                                مجال مربح جداً ويحتاج لخليط من الفهم العلمي ومهارات التواصل.
+                            </p>
+                             <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
+                                <li><strong class="text-white">مندوب دعاية طبية (Medical Rep):</strong> تسويق الأدوية للأطباء والصيدليات (متاح لكل تخصصات علوم الطبية).</li>
+                                <li><strong class="text-white">مندوب مبيعات علمي:</strong> بيع الكيماويات، الأجهزة المعملية، أو الأجهزة الطبية للمصانع والمستشفيات.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-10 border-t border-white border-opacity-20 animate-on-load fade-in-up-20">
+            
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 mt-10 text-white animate-on-load fade-in-up-21">
+                        الخلاصة: شهادتك هي مفتاحك
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-22">
+                        الاعتقاد بأن خريج كلية العلوم له مستقبل محدود هو اعتقاد خاطئ تماماً. شهادتك هي "جواز سفر" يمكنك من دخول أي قطاع تقريباً، لأنك تملك الأساس الذي تبحث عنه كل المؤسسات: عقلية علمية قادرة على التحليل وحل المشكلات.
+                    </p>
+                    <p class="text-lg text-gray-200 mb-6 leading-relaxed animate-on-load fade-in-up-23">
+                        سوق العمل لا يبحث عن "حافظ للمعلومات"، بل عن "مُطبق للمنهج العلمي". طور مهاراتك اللغوية (الإنجليزية) والبرمجية (حتى لو كنت كيميائياً)، وستجد أن الأبواب المفتوحة أمامك أكثر مما كنت تتخيل.
+                    </p>
+                </div>
+            </div>
+            <!-- *** END Updated After Grad Page *** -->
+
+            <!-- *** MODIFICATION: Added overflow-x-hidden *** -->
+            <div id="page-history" class="page-content hidden overflow-x-hidden">
                 <div class="p-4 md:p-8 max-w-4xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-white animate-on-load fade-in-up-1">
                         تاريخ كلية العلوم: مصنع العباقرة ومنارة النهضة المصرية
@@ -901,7 +1088,9 @@
             elementsToAnimate.forEach((el, index) => {
                 el.className = el.className.replace(/\bfade-in-up-\d+\b/g, '').trim();
                 setTimeout(() => {
-                    el.classList.add(`fade-in-up-${index + 1}`);
+                    // Use a reasonable cap for animation classes
+                    const animationClassIndex = Math.min(index + 1, 24); 
+                    el.classList.add(`fade-in-up-${animationClassIndex}`);
                 }, 10);
             });
             
@@ -1244,5 +1433,4 @@
     </script>
 </body>
 </html>
-
 
