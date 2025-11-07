@@ -476,11 +476,15 @@
                         <button class="tab-btn active" data-tab="tab-summaries">ملخصات</button>
                         <button class="tab-btn" data-tab="tab-lectures">المحاضرات</button>
                         <button class="tab-btn" data-tab="tab-instructions">تعليمات المادة</button>
+                        <button class="tab-btn" data-tab="tab-lab-drawings">رسومات المعامل</button>
                     </div>
                     <div id="tabs-content-container">
                         <div id="tab-summaries" class="tab-content">
                             <h3 class="text-2xl font-semibold mb-4">ملخصات المادة</h3>
                             <p>هنا ستجد ملخصات ومراجعات هامة للمادة لمساعدتك على الاستعداد للامتحانات.</p>
+                            <div id="tab-summaries-content" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                <!-- Dynamic summaries will be injected here -->
+                            </div>
                         </div>
                         <div id="tab-lectures" class="tab-content hidden">
                              <h3 class="text-2xl font-semibold mb-4">محاضرات المادة</h3>
@@ -491,6 +495,13 @@
                         <div id="tab-instructions" class="tab-content hidden">
                             <h3 class="text-2xl font-semibold mb-4">تعليمات هامة</h3>
                             <p>نصائح وإرشادات حول كيفية دراسة المادة، طبيعة الامتحانات، وأفضل طرق المذاكرة.</p>
+                        </div>
+                        <div id="tab-lab-drawings" class="tab-content hidden">
+                            <h3 class="text-2xl font-semibold mb-4">رسومات المعامل</h3>
+                            <p>رسومات معامل النبات والحيوان والجيولوجيا.</p>
+                            <div id="tab-lab-drawings-content" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                                <!-- Dynamic lab drawings will be injected here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1343,7 +1354,7 @@
         <p>&copy; 2025 | موقع Cairo SciVerse. كل الحقوق محفوظة.</p>
     </footer>
     
-    <div class="w-full bg-transparent flex justify-center py-4">
+    <div class="w-full bg-transparent flex flex justify-center py-4">
       <div class="w-32 h-1.5 bg-white rounded-full bg-opacity-20"></div>
     </div>
 
@@ -1379,17 +1390,12 @@
         ];
 
         // --- *** NEW: Helper to create 8 lecture stubs, mostly disabled *** ---
-        function createLectureStubs() {
-            return [
-                { youtube: null, lab: null, pdf: null }, // Lec 1 (no data)
-                { youtube: null, lab: null, pdf: null }, // Lec 2 (no data)
-                { youtube: null, lab: null, pdf: null }, // Lec 3 
-                { youtube: null, lab: null, pdf: null }, // Lec 4
-                { youtube: null, lab: null, pdf: null }, // Lec 5
-                { youtube: null, lab: null, pdf: null }, // Lec 6
-                { youtube: null, lab: null, pdf: null }, // Lec 7
-                { youtube: null, lab: null, pdf: null }  // Lec 8
-            ];
+        function createLectureStubs(num = 8) {
+            const stubs = [];
+            for (let i = 0; i < num; i++) {
+                stubs.push({ youtube: null, lab: null, pdf: null });
+            }
+            return stubs;
         }
         
         // --- *** UPDATED DATA STRUCTURE *** ---
@@ -1401,39 +1407,175 @@
                         name: 'كيمياء عامة (1)', 
                         id: 'chem1', 
                         lectures: [
-                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: '#', lab: null, pdf: '#' },
-                            { youtube: '#', lab: '#', pdf: null }, { youtube: '#', lab: '#', pdf: '#' },
-                            { youtube: null, lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
-                            { youtube: null, lab: null, pdf: null }, { youtube: '#', lab: '#', pdf: '#' }
+                            { youtube: '#', lab: 'https://drive.google.com/file/d/1sSZUCNCjSOwJWEXq6_Ekjw_uWQ7QSz3-/view', pdf: 'https://drive.google.com/file/d/18SbSzXApbLqGui7CLQnp6wY4QQwoTQnd/view' }, 
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18m_Y3BMLcteFy2EYLN1uX9h2lPpGzuSt/view' },
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18ceCnpqUHM3-wfgXV0T2glm0FPajao_W/view' }, 
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18RGLqmNBkZH3c7gvZnbIsT3dCl23qN5e/view' },
+                            { youtube: '#', lab: null, pdf: 'https://drive.google.com/file/d/18MCQiZzWnVXbX3Ny8a0vGWzi-mLxpTSd/view' }, 
+                            { youtube: '#', lab: null, pdf: null },
+                            { youtube: '#', lab: null, pdf: null }, 
+                            { youtube: '#', lab: null, pdf: null },
+                            { book: null }
+                        ],
+                        summaries: [
+                            'https://drive.google.com/file/d/1ALx0RQd-fUyB-LpItGmjho5GdhXzg-nS/view',
+                            'https://drive.google.com/file/d/1cTKWDPxYRkCf9EsfURIEDDlZliSgmL5B/view',
+                            'https://drive.google.com/file/d/1NapWgOKbFklkt9vNo8KK12yo0GpVDnZN/view',
+                            'https://drive.google.com/file/d/1SPND5n-MeDa3doiYAJUmqoAV7eeNju5h/view?usp=drive_open',
+                            'https://drive.google.com/file/d/17XKVpbOaP4-JOPBxyKnK9Y2IiL9y4ocv/view',
+                            'https://drive.google.com/file/d/17NbnzBMcMss8SXhbtJdNyy_tT6olBnDG/view',
+                            'https://drive.google.com/file/d/180EU_ICp4kXf89_k5MFWMoQTK3T38hYw/view',
+                            'https://drive.google.com/file/d/1_zQ2OX5svCnNoWjutuKsFNDb0iPBJkS6/view'
+                        ]
+                    },
+                    { 
+                        name: 'كيمياء عضوية (1)', 
+                        id: 'chemorg1', 
+                        lectures: [
+                            { youtube: '#', lab: 'https://drive.google.com/file/d/1sSZUCNCjSOwJWEXq6_Ekjw_uWQ7QSz3-/view', pdf: 'https://drive.google.com/file/d/1ASnhf7zSp2NClMSUl01ksi2QIqldIHHq/view?usp=drivesdk' }, 
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1AFsFPCjsWLpDeZHZWx2lN15852O5Lpnk/view?usp=drivesdk' },
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1AF704aATyQTqYXFI_nUlHWa8dQowOnLL/view?usp=drivesdk' }, 
+                            { youtube: '#', lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1ALnrSMGFw7qKjIfIqwlG1LJzkjy2vCb0/view?usp=drivesdk' },
+                            { youtube: '#', lab: null, pdf: 'https://drive.google.com/file/d/1AJwCQQV1P6itB4hantyJvCYbPPNeMwze/view?usp=drivesdk' }, 
+                            { youtube: '#', lab: null, pdf: 'https://drive.google.com/file/d/1AF09P1kp0AA1jyOFTBReYXNjgLwXoAJR/view?usp=drivesdk' },
+                            { youtube: '#', lab: null, pdf: null }, 
+                            { youtube: '#', lab: null, pdf: null },
+                            { book: null }
+                        ],
+                        summaries: [
+                            'https://drive.google.com/file/d/1ALx0RQd-fUyB-LpItGmjho5GdhXzg-nS/view',
+                            'https://drive.google.com/file/d/1cTKWDPxYRkCf9EsfURIEDDlZliSgmL5B/view',
+                            'https://drive.google.com/file/d/1NapWgOKbFklkt9vNo8KK12yo0GpVDnZN/view',
+                            'https://drive.google.com/file/d/1SPND5n-MeDa3doiYAJUmqoAV7eeNju5h/view?usp=drive_open',
+                            'https://drive.google.com/file/d/17XKVpbOaP4-JOPBxyKnK9Y2IiL9y4ocv/view',
+                            'https://drive.google.com/file/d/17NbnzBMcMss8SXhbtJdNyy_tT6olBnDG/view',
+                            'https://drive.google.com/file/d/180EU_ICp4kXf89_k5MFWMoQTK3T38hYw/view',
+                            'https://drive.google.com/file/d/1_zQ2OX5svCnNoWjutuKsFNDb0iPBJkS6/view'
                         ]
                     },
                     { 
                         name: 'فيزياء عامة (1)', 
                         id: 'phys1',
                         lectures: [
-                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
-                            { youtube: null, lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
-                            { youtube: '#', lab: null, pdf: '#' }, { youtube: '#', lab: '#', pdf: '#' },
-                            { youtube: '#', lab: '#', pdf: '#' }, { youtube: null, lab: null, pdf: null }
+                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
+                            { book: null }
                         ]
                     },
                     { name: 'رياضيات (1)', id: 'math1', lectures: createLectureStubs() },
-                    { name: 'جيولوجيا عامة', id: 'geo1', lectures: createLectureStubs() },
-                    { name: 'حيوان عام', id: 'zoo1', lectures: createLectureStubs() },
-{ 
+                    { name: 'جيولوجيا عامة', id: 'geo1', 
+                        lectures: [
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1mKDIF_qXiU6W1oeAb1aAVU2rTouaitMa/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1Ccs8eEcf3eCcf3THjzV03IPUrCCbdsb6YrG/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://www.pdffiller.com/s/i08cNlo8', pdf: 'https://drive.google.com/file/d/1BT3RA3lrBi-4Bvrk5OQwHUfmWJnmdO2Y/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1IGYOe3b0plWkyUkA2kEio2GXC4KCnsKy/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1_kFO-Ic89SYUyphBoGjhyP1j8QRnbiw8/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1mgXvcF7otg8y7Rfc6mRaLQ1aKXS8kEgR/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1muKLtYyDW3cKKVgzNZKrKwTharBzPzkn/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1vOIKaKZZUDKZ32oHY-jgom-mrjJyK29P/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: null },
+                            { book: 'https://drive.google.com/file/d/1CJraCzuWC5zZS-nvojPWsukpcvV12Jer/view?usp=drivesdk' }
+                        ]
+                    },
+                    { name: 'حيوان عام', id: 'zoo1', 
+                        lectures: [
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1o0Ka8eBo4F1p5D1s063NUUUnGiNfR_JF/view?usp=sharing' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1vdxiykKELkIWAaDZZedx-lyr7SaW30Yv/view?usp=sharing' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1nK9f8yWPkxwB-4QoK9dl0FPhcKr4vqAA/view?usp=sharing' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1Wfor2g9oWasDOS-1FZ6TRA9-XkKC1tPW/view?usp=drive_link;https://drive.google.com/file/d/1TX_HIXRznrfyaHLi-SshaVpSJb0kNr_U/view?usp=drive_link' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1cZuzd42PghfH822Ls5DHCmqeBA6Vo5m9/view?usp=drive_link' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1gG6yQU4GE_QZ009weQShYodAClvI_M_S/view?usp=drive_link' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1WjQDEpQQF7qygMqpKMjUCfD9g84hUgOQ/view?usp=drive_link' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1rTpw9_6Og7x1m6u_8awZ_jrItjclbQag/view?usp=drive_link' },
+                            { book: null }
+                        ]
+                    },
+                    { 
                         name: 'نبات عام', 
                         id: 'bot1', 
                         lectures: [
-                            { youtube: null, lab: 'https://drive.google.com/drive/folders/1W9jJVQsnROQ6O61DGcBvqsmIl6Sy7iPK', pdf: null }, // المحاضرة 1 (تم تعديل المعمل هنا)
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 2
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 3
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 4
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 5
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 6
-                            { youtube: null, lab: null, pdf: null }, // المحاضرة 7
-                            { youtube: null, lab: null, pdf: null }  // المحاضرة 8
-                        ] 
-                    }                ],
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1KwggwTAWYokmQ1gFm95ZgYvY84hqVowV/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/13zfcbwpkDjQpt2TzrXYXKSC4Dcy--Cqp/view?usp=drivesdk' }, // المحاضرة 1 (تم تعديل المعمل هنا)
+                            { youtube: null, lab: 'https://drive.google.com/file/d/13UD1FfFYd0an5BFE6EKV4hQlsHdp0APc/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1AKKEbpgKT_4AzXiEzrcLUG5fFoJpzpvJ/view?usp=drivesdk' }, // المحاضرة 2
+                            { youtube: null, lab: 'https://drive.google.com/file/d/11yFVMeYPLzhf2rDY_Jf4wYVunHvxTJpN/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1ILw2z49W4-aDERTFOOMYDbQIVATM_UBY/view?usp=drivesdk' }, // المحاضرة 3
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1kXtfBJ9XlHKQGYFAWRGrkOMUiIf5qX87/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/15gisXYpQ2GCOJOcVSywAWYRyhBNk2TEw/view?usp=drivesdk' }, // المحاضرة 4
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1wcQ3AtVqeX8Ixr1vX4FD0vkr-zVNROFP/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1dyke-knwZyauCPHI-5CMqrFGhbSOJ-J_/view?usp=drivesdk' }, // المحاضرة 5
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1TIZDg1ZfS7XFx-bsxXw8l_CTOJ3HJrpB/view?usp=drivesdk' }, // المحاضرة 6
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1UwWCgS4YNPLFCoP-P55K4yRrQc-AQWc-/view?usp=drivesdk' }, // المحاضرة 7
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1vs0mbog6wCWrE_ei52acTl7XFVbq0YKV/view?usp=drivesdk' }  // المحاضرة 8
+                        ],
+                        labDrawings: [
+                            { title: 'Bot 101 Anatomy lab', link: 'https://drive.google.com/file/d/1cVlozsHk7VWgKOZVU5C3f4fPigWtF75n/view?usp=sharing' },
+                            { title: 'Bot 101 Morphology lab', link: 'https://drive.google.com/file/d/12iOtJAAUdH9o3TPPiJUNLGYZ6WoRgTAk/view?usp=sharing' }
+                        ]
+                    },
+                    { 
+                        name: 'الإحصاء', 
+                        id: 'stat1', 
+                        lectures: [
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1Ta0idzdOgIrj6d-mHx9zGcvLmqaeXszr/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1bEzEcfI_06xBcSU9-M2ZH10xCtr9DlUy/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1rpkficGhkDE6baXnB178dH8aOAQl4_6S/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1DaoS_MjgHUohPb897wxUATO7T8AopTVD/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1tpIHkxFZLAKLZ_9-_tis5brut5pOnpIv/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/10TjfoHN0OI4yOXbC3Trzvx_wyOt3PkTq/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1vPQAWoz5gLK96PzF3P8jxYTyFXz3HIps/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1i91ekY0JVWL08feN1pvekCuSafkGvG7H/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1iHl8VAju7gWUtNOkYVR8khz0i-uS-_Cq/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1mhY7SPw4ZfiJcqTtqMUNMyZFrH4lEtZC/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1SLskuQFdxM1a56EGjsUhnQeZtFZK_saX/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1Mw8vBBXwwSlGwz-c4aHmrrsoGTfDADJ4/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://drive.google.com/file/d/10UMjSj8-Fhwj_H7lV5moTB0OOz4Nt9gC/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1ksdCo1rD5zIbBRFk9kL2QW1wU7gIY2JH/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1hkeLqnG0gjJ9bdWr8sfLZHbZaG1fbizp/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1rR3ruo-_1_qOyyRKsEbSE6quWYsXQ1vA/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1Ta0idzdOgIrj6d-mHx9zGcvLmqaeXszr/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1qoiAHIyNgE2C2Sd_Rv94ghhhCaA38Bgo/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1gwayjZHY4YBmyhmUv8gra4QG_w_PMOoz/view?usp=drivesdk' },
+                            { book: null }
+                        ]
+                    },
+                    { 
+                        name: 'فلك', 
+                        id: 'astro1', 
+                        lectures: [
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1mES4NM2TMKYTugIaFnY07C2nTHnMT2Jl/view?usp=drivesdk', pdf: null }, 
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1iEzdencIZpfsto3ikYyeoysmD5DWkCzK/view?usp=drivesdk', pdf: null },
+                            { youtube: null, lab: null, pdf: null }, 
+                            { youtube: null, lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null }, 
+                            { youtube: null, lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null }, 
+                            { youtube: null, lab: null, pdf: null },
+                            { book: null }
+                        ],
+                        summaries: [
+                            'https://drive.google.com/file/d/1fn1BWHo2pV8sJPj1Qkm5pfFjqtMJt7w_/view?usp=drivesdk',
+                            'https://drive.google.com/file/d/15fmwfz79Aj-rASbrU-_AnQLWFfk3n3JR/view?usp=drivesdk'
+                        ]
+                    },
+                    { 
+                        name: 'الفيزياء الحيوية', 
+                        id: 'bph111', 
+                        lectures: [
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1333', pdf: 'https://drive.google.com/file/d/1SRIgevoChsaQDnPdm__gtkugwjaz1QI0/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1334', pdf: 'https://drive.google.com/file/d/17H4lh8u0JvgWz8L19pvwwB8XVD5iLavT/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1335', pdf: 'https://drive.google.com/file/d/1u9VAt_GQYQFLFjZQLq3yvZnNoERoXBDy/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1336', pdf: 'https://drive.google.com/file/d/1WHFRC-d1lHpTuFGmMudYsvzWr3xZt8vt/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1337', pdf: 'https://drive.google.com/file/d/19nHnr1ia3zxetIvif7fCLd24KWdoqqzi/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1338', pdf: null },
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1339', pdf: null }, 
+                            { youtube: null, lab: null, pdf: null },
+                            { book: 'https://drive.google.com/file/d/1FFb-ddVOvw1ccSZDXgYhTNpkZ-ES9EZG/view?usp=drivesdk' }
+                        ]
+                    },
+                    { 
+                        name: 'جيوفيزياء', 
+                        id: 'geophys1', 
+                        lectures: [
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/17buTSAw4WX_j8Yedk4gBbZWk5vjp2Zyt/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1N6q2BosHg8pPD4vT7Cyx4CqBrMQE70m1/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1YKfZmUoVpgvNACyrYlDwDqHj0MBzsnYa/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1cgwt0dvL2_y5OU09VHDbhQ_xNqEpmj88/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1Vlr2auiGMB4bBjSRzYnkdgkWGmXuBK7C/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/16MCQjGQGgTBNyIjM1WokNM0536FDjyL3/view?usp=drivesdk' },
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1Igp5QeKn7TNXwLM_izgVYoUby2AnrGNe/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1ndGPDY_FpZ1_n3RfVtBB7KIf24Ic6lll/view?usp=drivesdk' },
+                            { book: null }
+                        ]
+                    },
+                ],
                 '2': [
                     { name: 'كيمياء عامة (2)', id: 'chem2', lectures: createLectureStubs() },
                     { name: 'فيزياء عامة (2)', id: 'phys2', lectures: createLectureStubs() },
@@ -1511,9 +1653,21 @@
                 ]
             },
             'متطلبات الجامعة': [
-                { name: 'قضايا مجتمعية', id: 'uni-social', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>', lectures: createLectureStubs() },
+                { name: 'قضايا مجتمعية', id: 'uni-social', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.81 0.3 3 3 0 003.741-.479 3 3 0 003.741.479m-7.5-2.962A3.75 3.75 0 0112 15v-2.25A3.75 3.75 0 0115.75 9h-1.5a2.25 2.25 0 01-2.25-2.25v-1.5A3.75 3.75 0 0112 3v2.25A3.75 3.75 0 018.25 9h1.5a2.25 2.25 0 012.25 2.25v1.5m-3.75-2.25a3.75 3.75 0 00-3.75 3.75v2.25A3.75 3.75 0 0012 18.75v-2.25A3.75 3.75 0 008.25 12h-1.5a2.25 2.25 0 00-2.25 2.25v1.5A3.75 3.75 0 006 18.75v-2.25A3.75 3.75 0 002.25 12h1.5A2.25 2.25 0 006 9.75v-1.5A3.75 3.75 0 002.25 6v2.25a3.75 3.75 0 003.75 3.75h1.5a2.25 2.25 0 002.25-2.25v-1.5A3.75 3.75 0 006 3v2.25A3.75 3.75 0 009.75 9h-1.5a2.25 2.25 0 00-2.25 2.25v1.5" /></svg>', lectures: createLectureStubs() },
                 { name: 'مبادئ القانون والدستور', id: 'uni-law', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>', lectures: createLectureStubs() },
-                { name: 'حاسب آلي', id: 'uni-cs', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>', lectures: createLectureStubs() },
+                { name: 'حاسب آلي', id: 'uni-cs', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg>', 
+                    lectures: [
+                        { youtube: null, lab: null, pdf: 'https://www.pdffiller.com/s/dLw59QEQQ' },
+                        { youtube: null, lab: null, pdf: 'https://www.pdffiller.com/s/CdOfCuAxdG' },
+                        { youtube: null, lab: null, pdf: 'https://www.pdffiller.com/s/YLw3Pw13' },
+                        { youtube: null, lab: null, pdf: null },
+                        { youtube: null, lab: null, pdf: null },
+                        { youtube: null, lab: null, pdf: 'https://www.pdffiller.com/s/q91DfwqK' },
+                        { youtube: null, lab: null, pdf: 'https://www.pdffiller.com/s/mvOLTTPKKT' },
+                        { youtube: null, lab: null, pdf: null },
+                        { book: null }
+                    ] 
+                },
                 { name: 'لغة انجليزية', id: 'uni-eng', icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>', lectures: createLectureStubs() }
             ],
             'دراسات عليا': {
@@ -1806,11 +1960,9 @@
                     if (typeof subjectData === 'object' && subjectData.lectures) {
                         hasLectureData = true;
                         
-                        // Loop 8 times as requested
-                        for (let i = 0; i < 8; i++) {
+                        // Loop through lectures array (could be 8, 10, etc.)
+                        subjectData.lectures.forEach((lectureData, i) => {
                             const lectureNum = i + 1;
-                            const lectureData = subjectData.lectures[i]; // Get data for this lecture (might be undefined)
-
                             const youtubeLink = lectureData?.youtube;
                             const labLink = lectureData?.lab;
                             const pdfLink = lectureData?.pdf;
@@ -1818,7 +1970,7 @@
                             const lectureCardHTML = `
                                 <div class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg">
                                     <h4 class="text-xl font-semibold mb-4 text-white">المحاضرة ${lectureNum}</h4>
-                                    <div class="flex items-center justify-center gap-4 sm:gap-6">
+                                    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
                                         ${generateLinkButton(youtubeLink, 'youtube')}
                                         ${generateLinkButton(labLink, 'lab')}
                                         ${generateLinkButton(pdfLink, 'pdf')}
@@ -1826,7 +1978,7 @@
                                 </div>
                             `;
                             lecturesContainer.innerHTML += lectureCardHTML;
-                        }
+                        });
                     }
                     
                     if (!hasLectureData) {
@@ -1834,6 +1986,44 @@
                          lecturesContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد بيانات محاضرات مُضافة لهذه المادة حتى الآن.</p>`;
                     }
                     // --- END NEW LOGIC ---
+
+                    // --- NEW DYNAMIC SUMMARIES LOGIC ---
+                    const summariesContainer = document.getElementById('tab-summaries-content');
+                    summariesContainer.innerHTML = ''; // Clear previous
+
+                    if (subjectData?.summaries && subjectData.summaries.length > 0) {
+                        subjectData.summaries.forEach((summaryLink, index) => {
+                            const summaryCardHTML = `
+                                <a href="${summaryLink}" target="_blank" rel="noopener noreferrer" class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg hover:bg-opacity-10 transition-all">
+                                    <h4 class="text-xl font-semibold mb-2 text-white">ملخص ${index + 1}</h4>
+                                    <p class="text-gray-300">اضغط للعرض</p>
+                                </a>
+                            `;
+                            summariesContainer.innerHTML += summaryCardHTML;
+                        });
+                    } else {
+                        summariesContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد ملخصات متاحة لهذه المادة حتى الآن.</p>`;
+                    }
+                    // --- END SUMMARIES LOGIC ---
+
+                    // --- NEW DYNAMIC LAB DRAWINGS LOGIC ---
+                    const labDrawingsContainer = document.getElementById('tab-lab-drawings-content');
+                    labDrawingsContainer.innerHTML = ''; // Clear previous
+
+                    if (subjectData?.labDrawings && subjectData.labDrawings.length > 0) {
+                        subjectData.labDrawings.forEach((drawing) => {
+                            const drawingCardHTML = `
+                                <a href="${drawing.link}" target="_blank" rel="noopener noreferrer" class="bg-white bg-opacity-5 p-4 rounded-lg shadow-lg hover:bg-opacity-10 transition-all">
+                                    <h4 class="text-xl font-semibold mb-2 text-white">${drawing.title}</h4>
+                                    <p class="text-gray-300">اضغط للعرض</p>
+                                </a>
+                            `;
+                            labDrawingsContainer.innerHTML += drawingCardHTML;
+                        });
+                    } else {
+                        labDrawingsContainer.innerHTML = `<p class="text-center col-span-full text-gray-300">لا توجد رسومات معامل متاحة لهذه المادة حتى الآن.</p>`;
+                    }
+                    // --- END LAB DRAWINGS LOGIC ---
 
                     // Reset tabs to show "Summaries" first by default
                     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1970,4 +2160,4 @@
 
     </script>
 </body>
-    </html>
+</html>
