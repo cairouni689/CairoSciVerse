@@ -476,9 +476,9 @@
                         <button class="tab-btn active" data-tab="tab-summaries">ملخصات</button>
                         <button class="tab-btn" data-tab="tab-lectures">المحاضرات</button>
                         <button class="tab-btn" data-tab="tab-instructions">تعليمات المادة</button>
-                        <button class="tab-btn" data-tab="tab-lab-drawings">رسومات المعامل</button>
+                        <button class="tab-btn" data-tab="tab-lab-drawings" id="tab-lab-drawings-btn">رسومات المعامل</button>
                         <button class="tab-btn" data-tab="tab-questions">أسئلة وامتحانات</button>
-                        <button class="tab-btn" data-tab="tab-lab-samples">عينات المعامل</button>
+                        <button class="tab-btn" data-tab="tab-lab-samples" id="tab-lab-samples-btn">عينات المعامل</button>
                     </div>
                     <div id="tabs-content-container">
                         <div id="tab-summaries" class="tab-content">
@@ -1424,7 +1424,7 @@
                         id: 'chem1', 
                         isMath: false,
                         lectures: [
-                            { youtube: null, lab: 'https://drive.google.com/file/d/1sSZUCNCjSOwJWEXq6_Ekjw_uWQ7QSz3-/view', pdf: 'https://drive.google.com/file/d/18SbSzXApbLqGui7CLQnp6wY4QQwoTQnd/view' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/18SbSzXApbLqGui7CLQnp6wY4QQwoTQnd/view' }, 
                             { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18m_Y3BMLcteFy2EYLN1uX9h2lPpGzuSt/view' },
                             { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18ceCnpqUHM3-wfgXV0T2glm0FPajao_W/view' }, 
                             { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/18RGLqmNBkZH3c7gvZnbIsT3dCl23qN5e/view' },
@@ -1492,8 +1492,12 @@
                             { youtube: 'https://youtu.be/QzCWuV-V0uk?si=fXomF0bFGRFR2oIT', lab: null, pdf: 'https://drive.google.com/file/d/1Gk12Nw9dK801kg8s-N5WxCntjBzKqaBh/view?usp=drivesdk' },
                             { youtube: 'https://youtu.be/suuKRZfptqY?si=bAPBGVLnjiVUW5EY', lab: null, pdf: null },
                             { youtube: 'https://youtu.be/dZy_WTCsv9c?si=wEk-m-eetZBN-MHs', lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null },
                             { youtube: 'https://youtu.be/icNA9wwSK5k?si=i7vT-vl_rgP-qSxY', lab: null, pdf: null },
                             { youtube: 'https://youtu.be/yxBh6i9Du3c?si=kMHdVlyM7Y8NPWow', lab: null, pdf: null },
+                            { youtube: 'https://youtu.be/8_jO16qXjWQ?si=Rh3eXA7EbFICXKnY', lab: null, pdf: null },
+                            { youtube: 'https://youtu.be/fvh8Ma0qeAk?si=vcyMzXsql05lB2S8', lab: null, pdf: null },
+                            { youtube: null, lab: null, pdf: null },
                             { book: null }
                         ],
                         summaries: [],
@@ -2143,6 +2147,19 @@
                     }
                     // --- END LAB SAMPLES LOGIC ---
 
+                    // --- Show/Hide specific tabs based on subject ---
+                    const specialSubjects = ['bot1', 'zoo1', 'geo1', 'ent1'];
+                    const labDrawingsBtn = document.getElementById('tab-lab-drawings-btn');
+                    const labSamplesBtn = document.getElementById('tab-lab-samples-btn');
+
+                    if (specialSubjects.includes(subjectId)) {
+                        labDrawingsBtn.classList.remove('hidden');
+                        labSamplesBtn.classList.remove('hidden');
+                    } else {
+                        labDrawingsBtn.classList.add('hidden');
+                        labSamplesBtn.classList.add('hidden');
+                    }
+
                     // Reset tabs to show "Summaries" first by default
                     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
                     document.querySelector('.tab-btn[data-tab="tab-summaries"]').classList.add('active');
@@ -2278,4 +2295,4 @@
 
     </script>
 </body>
-                        </html>
+</html>
