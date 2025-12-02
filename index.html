@@ -439,9 +439,9 @@
             <!-- ======================= DEPARTMENTS PAGE (NEW) ======================= -->
             <div id="page-departments" class="page-content hidden">
                  <div class="p-8">
-                    <button class="back-btn mb-8" data-target="page-academic-years">
+                    <button class="back-btn mb-8" data-target="page-semesters">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                        <span>العودة للسنوات</span>
+                        <span>العودة للفصول</span>
                     </button>
                     <h2 id="departments-title" class="text-3xl md:text-4xl font-bold mb-10 text-center"></h2>
                     <div id="departments-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5">
@@ -476,9 +476,9 @@
                         <button class="tab-btn active" data-tab="tab-summaries">ملخصات</button>
                         <button class="tab-btn" data-tab="tab-lectures">المحاضرات</button>
                         <button class="tab-btn" data-tab="tab-instructions">تعليمات المادة</button>
-                        <button class="tab-btn" data-tab="tab-lab-drawings" id="tab-lab-drawings-btn">رسومات المعامل</button>
+                        <button class="tab-btn hidden" data-tab="tab-lab-drawings" id="tab-lab-drawings-btn">رسومات المعامل</button>
                         <button class="tab-btn" data-tab="tab-questions">أسئلة وامتحانات</button>
-                        <button class="tab-btn" data-tab="tab-lab-samples" id="tab-lab-samples-btn">عينات المعامل</button>
+                        <button class="tab-btn hidden" data-tab="tab-lab-samples" id="tab-lab-samples-btn">عينات المعامل</button>
                     </div>
                     <div id="tabs-content-container">
                         <div id="tab-summaries" class="tab-content">
@@ -996,7 +996,7 @@
                                 تحليل البيانات (Data Analysis):
                             </h4>
                             <p class="text-lg text-gray-200 leading-relaxed">
-                                سواء كنت في قسم كيمياء، فيزياء، رياضة، أو بيولوجي، فأنت بارع في قراءة البيانات والأرقام والرسوم البيانية، واستخلاص معنى حقيقي منها. هذه المهارة هي أساس "علم البيانات" (Data Science) المطلوب حالياً.
+                                سواء كنت في قسم كيمياء، فيزياء، رياضة، أو بيولوجي، فأنت بارع في قراءة البيانات والأرقام والرسوم البيانية، واستخلاص معنى حقيقي منها. هذه المهارات هي أساس "علم البيانات" (Data Science) المطلوب حالياً.
                             </p>
                         </div>
                         
@@ -1096,10 +1096,12 @@
                             </ul>
                         </div>
                         
-                         <!-- Placeholder Image -->
-                        <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Engineer+at+petroleum+site" 
-                             alt="مهندس في موقع بترول" 
-                             class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-8 animate-on-load fade-in-up-18">
+                        <div class="animate-on-load fade-in-up-18">
+                            <!-- Placeholder Image -->
+                            <img src="https://placehold.co/600x400/1e1a40/ffffff?text=Engineer+at+petroleum+site" 
+                                 alt="مهندس في موقع بترول" 
+                                 class="w-full max-w-lg mx-auto rounded-lg shadow-lg my-8">
+                        </div>
 
                         <div class="animate-on-load fade-in-up-19">
                             <h4 class="text-2xl font-semibold mb-4 text-white">5. قطاع المبيعات والتسويق العلمي (Scientific Sales)</h4>
@@ -1107,7 +1109,7 @@
                                 مجال مربح جداً ويحتاج لخليط من الفهم العلمي ومهارات التواصل.
                             </p>
                              <ul class="list-disc list-outside rtl:mr-6 space-y-2 text-lg text-gray-200 mb-6 leading-relaxed">
-                                <li><strong class="text-white">مندوب دعاية طبية (Medical Rep):</strong> تسويق الأدوية للأطباء والصيدليات (متاح لكل تخصصات علوم الطبية).</li>
+                                <li><strong class="text-white">مندوب دعاية طبية (Medical Rep):</strong> تسويق الأدوية للأطباء والأصيدليات (متاح لكل تخصصات علوم الطبية).</li>
                                 <li><strong class="text-white">مندوب مبيعات علمي:</strong> بيع الكيماويات، الأجهزة المعملية، أو الأجهزة الطبية للمصانع والمستشفيات.</li>
                             </ul>
                         </div>
@@ -1446,7 +1448,7 @@
                             { youtube: null, lab: 'https://drive.google.com/file/d/1sSZUCNCjSOwJWEXq6_Ekjw_uWQ7QSz3-/view', pdf: 'https://drive.google.com/file/d/1ASnhf7zSp2NClMSUl01ksi2QIqldIHHq/view?usp=drivesdk' }, 
                             { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1AFsFPCjsWLpDeZHZWx2lN15852O5Lpnk/view?usp=drivesdk' },
                             { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1AF704aATyQTqYXFI_nUlHWa8dQowOnLL/view?usp=drivesdk' }, 
-                            { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1ALnrSMGFw7qKjIfIqwlG1LJzkjy2vCb0/view?usp=drivesdk' },
+                            { youtube: null, lab: 'https://drive.google.com/drive/u/0/mobile/folders/1fhU3sDPvmPSeVAeFj81E6alywjpivIkS/19RX-kyONd8oMgin9ycAPVJveKagnOR7d/14BFXrOutDxZNQtaRsf1YXHlkaqVm5A9q/1MUyFQWZLp13XBXQ_rqnMoSbB1ZDA2ChR/1HVbRH3wWeDL0e0g7W6nJyE2Ytp9ObXEs/1K_RmfhoLYblrZ_5iLfNbm-0hN-Sh0J4Y?sort=13&direction=a', pdf: 'https://drive.google.com/file/d/1ALnrSMGFw7qKjIfIqwlUrATM_UBYUrCCbdsb6YrG/view?usp=drivesdk' },
                             { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1AJwCQQV1P6itB4hantyJvCYbPPNeMwze/view?usp=drivesdk' }, 
                             { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1AF09P1kp0AA1jyOFTBReYXNjgLwXoAJR/view?usp=drivesdk' },
                             { youtube: null, lab: null, pdf: null }, 
@@ -1462,11 +1464,16 @@
                         id: 'phys1',
                         isMath: false,
                         lectures: [
-                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
-                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
-                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
-                            { youtube: null, lab: null, pdf: null }, { youtube: null, lab: null, pdf: null },
-                            { book: null }
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1c66PtiuVeayS4nPFbUVW1B5j2xO9sL7y/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1_6PXT2GAPKf3oovDk5K-C0MuxJ7xhQnQ/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1gj8ZUd74-eAe9uxr_7_e7NLQDvHgyAH3/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1l4KU_QpUNj7PEQ2lHyrvLmylX-8KWz4O/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1oKwfmIjUd0iX3sfnDkmX3u_vPM2jX8Qw/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1Qcq6XmAqfcWrm0oxSagMefhazc0aAPYm/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/15Qi7P4Hvh8HACbmgi-usTGutHfMGZcHw/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1sNDlenjyC4AnVWTXjpt3UgHPFP6SHjqs/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1EvvLzIHwgaUbxksAjmCwU9hQVAAmVAvY/view?usp=drivesdk' }, 
+                            { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1a-5ECHjd5d2WB6QljmiIt8FOsHsnq8nw/view?usp=drivesdk' }
                         ],
                         summaries: [],
                         questions: [],
@@ -1525,7 +1532,7 @@
                         isMath: false,
                         lectures: [
                             { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1o0Ka8eBo4F1p5D1s063NUUUnGiNfR_JF/view?usp=drive_link' },
-                            { youtube: null, lab: 'https://drive.google.com/file/d/1BJlVYTHs3fSssLfPlzhgDNeovCLKdXB4/view?usp=drive_link', pdf: 'https://drive.google.com/file/d/1vdxiykKELkIWAaDZZedx-lyr7SaW30Yv/view?usp=drive_link' },
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1BJllVYTHs3fSssLfPlzhgDNeovCLKdXB4/view?usp=drive_link', pdf: 'https://drive.google.com/file/d/1vdxiykKELkIWAaDZZedx-lyr7SaW30Yv/view?usp=drive_link' },
                             { youtube: null, lab: 'https://drive.google.com/file/d/1SfnPc7qccJGPb4Ca_TiTqQdBQ1og22CI/view?usp=drive_link', pdf: 'https://drive.google.com/file/d/1nK9f8yWPkxwB-4QoK9dl0FPhcKr4vqAA/view?usp=drive_link' },
                             { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1Wfor2g9oWasDOS-1FZ6TRA9-XkKC1tPW/view?usp=drive_link' },
                             { youtube: null, lab: null, pdf: 'https://drive.google.com/file/d/1TX_HIXRznrfyaHLi-SshaVpSJb0kNr_U/view?usp=drive_link' },
@@ -1590,7 +1597,7 @@
                         id: 'bot1', 
                         isMath: false,
                         lectures: [
-                            { youtube: null, lab: 'https://drive.google.com/file/d/1KwggwTAWYokmQ1gFm95ZgYvY84hqVowV/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/13zfcbwpkDjQpt2TzrXYXKSC4Dcy--Cqp/view?usp=drivesdk' }, // المحاضرة 1 (تم تعديل المعمل هنا)
+                            { youtube: null, lab: 'https://drive.google.com/file/d/1KwggwTAWYokokmQ1gFm95ZgYvY84hqVowV/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/13zfcbwpkDjQpt2TzrXYXKSC4Dcy--Cqp/view?usp=drivesdk' }, // المحاضرة 1 (تم تعديل المعمل هنا)
                             { youtube: null, lab: 'https://drive.google.com/file/d/13UD1FfFYd0an5BFE6EKV4hQlsHdp0APc/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1AKKEbpgKT_4AzXiEzrcLUG5fFoJpzpvJ/view?usp=drivesdk' }, // المحاضرة 2
                             { youtube: null, lab: 'https://drive.google.com/file/d/11yFVMeYPLzhf2rDY_Jf4wYVunHvxTJpN/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/1ILw2z49W4-aDERTFOOMYDbQIVATM_UBY/view?usp=drivesdk' }, // المحاضرة 3
                             { youtube: null, lab: 'https://drive.google.com/file/d/1kXtfBJ9XlHKQGYFAWRGrkOMUiIf5qX87/view?usp=drivesdk', pdf: 'https://drive.google.com/file/d/15gisXYpQ2GCOJOcVSywAWYRyhBNk2TEw/view?usp=drivesdk' }, // المحاضرة 4
@@ -1690,7 +1697,7 @@
                         lectures: [
                             { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1333', pdf: 'https://drive.google.com/file/d/1SRIgevoChsaQDnPdm__gtkugwjaz1QI0/view?usp=drivesdk' }, 
                             { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1334', pdf: 'https://drive.google.com/file/d/17H4lh8u0JvgWz8L19pvwwB8XVD5iLavT/view?usp=drivesdk' },
-                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1335', pdf: 'https://drive.google.com/file/d/1u9VAt_GQYQFLFjZQLq3yvZnNoERoXBDy/view?usp=drivesdk' }, 
+                            { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1335', pdf: 'https://drive.google.com/file/d/1u9VAt_GQYokFLFjZQLq3yvZnNoERoXBDy/view?usp=drivesdk' }, 
                             { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1336', pdf: 'https://drive.google.com/file/d/1WHFRC-d1lHpTuFGmMudYsvzWr3xZt8vt/view?usp=drivesdk' },
                             { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1337', pdf: 'https://drive.google.com/file/d/19nHnr1ia3zxetIvif7fCLd24KWdoqqzi/view?usp=drivesdk' }, 
                             { youtube: null, lab: 'https://t.me/BIOPHYSICS102_bot/1338', pdf: null },
@@ -1861,8 +1868,22 @@
                     }
                 ]
             },
-            // Empty for higher years as per request
-            'السنة الثانية': {},
+            'السنة الثانية': {
+                'كيمياء/كيمياء حيوي': {
+                    '1': [
+                        { name: 'Genetics ح212', id: 'genetics-h212', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Cell biology ح 211', id: 'cellbio-h211', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Analytical chemistry ك221', id: 'analchem-k221', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Aromatic chemistry ك 242', id: 'aromchem-k242', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Organic chemistry ك 241', id: 'orgchem-k241', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Thermodynamics ك 211', id: 'thermo-k211', isMath: false, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] },
+                        { name: 'Stat 222', id: 'stat-222', isMath: true, lectures: createLectureStubs(8), summaries: [], questions: [], labSamples: [] }
+                    ],
+                    '2': [
+                        // يمكن إضافة مواد الفصل الثاني هنا إذا لزم الأمر، حالياً فارغ
+                    ]
+                }
+            },
             'السنة الثالثة': {},
             'السنة الرابعة': {},
             'متطلبات الجامعة': [
@@ -1992,7 +2013,7 @@
             // Reset and trigger animations for the new page
             const elementsToAnimate = targetPage.querySelectorAll('.animate-on-load');
             elementsToAnimate.forEach((el, index) => {
-                el.className = el.className.replace(/\bfade-in-up-\d+\b/g, '').trim();
+                el.classList = el.classList.toString().replace(/\bfade-in-up-\d+\b/g, '').trim();
                 setTimeout(() => {
                     // Use a reasonable cap for animation classes
                     const animationClassIndex = Math.min(index + 1, 24); 
@@ -2014,7 +2035,7 @@
                 text = 'المحاضرة';
             } else if (type === 'lab') {
                 // Lab (Beaker) Icon
-                icon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 2.25c.399 0 .79.04.1.05v.39c0 .32-.15.63-.42.85l-1.08.81a1.5 1.5 0 01-1.8 0L9.12 4.3a.98.98 0 01-.42-.85V3.3c.21-.01.401-.05.1-.05h5.1zM6.88 8.03l-.06-.05a1.8 1.8 0 00-1.58 0L3.12 9.6a1.5 1.5 0 000 2.8l2.12 1.58c.53.4 1.2.6 1.8.6h8.1a1.8 1.8 0 001.8-.6l2.12-1.58a1.5 1.5 0 000-2.8L15.6 7.98a1.8 1.8 0 00-1.58 0l-.06.05v5.94c0 1.02-.83 1.85-1.85 1.85h-2.14a1.85 1.85 0 01-1.85-1.85V8.03z" /></svg>`;
+                icon = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 2.25c.399 0 .79.04 .1.05v.39c0 .32-.15.63-.42.85l-1.08.81a1.5 1.5 0 01-1.8 0L9.12 4.3a.98.98 0 01-.42-.85V3.3c.21-.01.401-.05.1-.05h5.1zM6.88 8.03l-.06-.05a1.8 1.8 0 00-1.58 0L3.12 9.6a1.5 1.5 0 000 2.8l2.12 1.58c.53.4 1.2.6 1.8.6h8.1a1.8 1.8 0 001.8-.6l2.12-1.58a1.5 1.5 0 000-2.8L15.6 7.98a1.8 1.8 0 00-1.58 0l-.06.05v5.94c0 1.02-.83 1.85-1.85 1.85h-2.14a1.85 1.85 0 01-1.85-1.85V8.03z" /></svg>`;
                 text = isMath ? 'سكشن' : 'المعمل';
             } else if (type === 'pdf') {
                 // PDF (Document) Icon
@@ -2102,13 +2123,13 @@
                 subjectsBackBtnText.textContent = 'العودة للسنوات';
             } else if (yearsWithDepartments.includes(currentYear)) {
                 // Handle cases where some departments might not have subjects added yet
-                subjects = subjectsData[currentYear]?.[currentDepartment] || [];
-                subjectsListTitle.textContent = `مواد ${currentDepartment || 'القسم'}`;
-                subjectsBackBtn.dataset.target = 'page-departments';
-                subjectsBackBtnText.textContent = 'العودة للأقسام';
+                subjects = subjectsData[currentYear]?.[currentDepartment]?.[currentSemester] || [];
+                subjectsListTitle.textContent = `مواد ${currentDepartment || 'القسم'} - الفصل الدراسي ${currentSemester === '1' ? 'الأول' : 'الثاني'}`;
+                subjectsBackBtn.dataset.target = 'page-semesters';
+                subjectsBackBtnText.textContent = 'العودة للفصول';
             } else { 
                 // Handles 'السنة الأولى' and 'دراسات عليا'
-                subjects = subjectsData[currentYear]?.[currentSemester];
+                subjects = subjectsData[currentYear]?.[currentSemester] || [];
                 const semesterText = currentSemester === '1' ? 'الأول' : 'الثاني';
                 subjectsListTitle.textContent = `مواد ${currentYear} - الفصل الدراسي ${semesterText}`;
                 subjectsBackBtn.dataset.target = 'page-semesters';
@@ -2159,7 +2180,7 @@
                     if (currentYear === 'متطلبات الجامعة') {
                         dataSet = subjectsData[currentYear];
                     } else if (yearsWithDepartments.includes(currentYear)) {
-                        dataSet = subjectsData[currentYear]?.[currentDepartment];
+                        dataSet = subjectsData[currentYear]?.[currentDepartment]?.[currentSemester];
                     } else {
                         dataSet = subjectsData[currentYear]?.[currentSemester];
                     }
@@ -2383,16 +2404,9 @@
                 currentDepartment = '';
                 saveState(); // Save the new state
 
-                const yearsWithDepartments = ['السنة الثانية', 'السنة الثالثة', 'السنة الرابعة'];
-                
-                if (yearsWithDepartments.includes(currentYear)) {
-                    navigateToPage('page-departments');
-                } else if (currentYear === 'متطلبات الجامعة') {
-                    // Directly show subjects for 'متطلبات الجامعة'
+                if (currentYear === 'متطلبات الجامعة') {
                     navigateToPage('page-subjects-list');
-                }
-                else { 
-                    // Handles 'السنة الأولى' and 'دراسات عليا'
+                } else {
                     navigateToPage('page-semesters');
                 }
             });
@@ -2403,7 +2417,12 @@
                 e.preventDefault();
                 currentSemester = card.dataset.semester;
                 saveState(); // Save state
-                navigateToPage('page-subjects-list');
+                const yearsWithDepartments = ['السنة الثانية', 'السنة الثالثة', 'السنة الرابعة'];
+                if (yearsWithDepartments.includes(currentYear)) {
+                    navigateToPage('page-departments');
+                } else {
+                    navigateToPage('page-subjects-list');
+                }
             });
         });
         
